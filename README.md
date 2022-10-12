@@ -21,6 +21,9 @@
 * [spring 集成 mybatis ](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
 * [Flyway 插件管理数据库版本](https://flywaydb.org/documentation/getstarted/firststeps/maven/)
 * [Lombok 插件简化代码](http://wjhsh.net/janes-p-9242497.html/)
+* [thymeleaf 操作文档](thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration/)
+
+
 ## 工具
 * [git 远程管理github仓库](https://git-scm.com/)
 * [Xmind 思维导图绘制软件](https://xmind.cn/)
