@@ -26,6 +26,9 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" th:if="${session.user != null}">
+          <a href="/publish">发布</a>
+        </li>
+        <li class="dropdown" th:if="${session.user != null}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
           th:text="${session.user.getName()}"><span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -34,7 +37,7 @@
             <li><a href="#">推出登录</a></li>
           </ul>
         </li>
-        <li th:if="${session.user == null}"><a th:href="${Uri}">登录</a></li>
+        <li th:if="${session.user == null}"><a th:href="${uri}">登录</a></li>
       </ul>
     </div>
   </div>

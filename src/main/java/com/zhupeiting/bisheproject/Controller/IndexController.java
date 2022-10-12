@@ -7,26 +7,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class indexController {
-    @Value("${github.authorize.uri}")
-    private String authorizeUri;
-    @Value("${github.client.id}")
-    private String clientId;
-    @Value("${github.redirect.uri}")
-    private String redirectUri;
+public class IndexController {
+    @Value("${github.authorize.uri.with.params}")
+    private String authorizeUriWithParams;
     @Autowired
     private UserMapper userMapper;
 
     @GetMapping("/")
     public String index(HttpServletRequest request ,Model model){
-        String Uri = authorizeUri + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=code";
-        model.addAttribute("Uri",Uri);
+        String uri = authorizeUriWithParams;
+        model.addAttribute("uri",uri);
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if(cookie.getName().equals("token")){
