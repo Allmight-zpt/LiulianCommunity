@@ -1,10 +1,12 @@
 package com.zhupeiting.bisheproject.service;
 
+import com.zhupeiting.bisheproject.dto.PageDto;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
 import com.zhupeiting.bisheproject.mapper.QuestionMapper;
 import com.zhupeiting.bisheproject.mapper.UserMapper;
 import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.Users;
+import lombok.val;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +24,28 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<QuestionDto> list() {
-        List<Question>questionList = questionMapper.list();
+    public PageDto list(Integer page, Integer size) {
+        PageDto pageDto = new PageDto();
+        Integer totalCount = questionMapper.count();
+        //计算总页数
+        Integer totalPage;
+        if(totalCount % size == 0){
+            totalPage = totalCount / size;
+        }else{
+            totalPage = totalCount / size + 1;
+        }
+        //检查page
+        if(page < 1){
+            page = 1;
+        }
+        if(page > totalPage){
+            page = totalPage;
+        }
+        pageDto.setPageDto(totalPage,page);
+        Integer offset = size * (page-1);
+        List<Question>questionList = questionMapper.list(offset,size);
         List<QuestionDto>questionDtoList = new ArrayList<>();
+
         for (Question question : questionList) {
             Users user = userMapper.findById(question.getCreator());
             QuestionDto questionDto = new QuestionDto();
@@ -32,6 +53,8 @@ public class QuestionService {
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        return questionDtoList;
+        pageDto.setQuestions(questionDtoList);
+
+        return pageDto;
     }
 }

@@ -1,5 +1,6 @@
 package com.zhupeiting.bisheproject.Controller;
 
+import com.zhupeiting.bisheproject.dto.PageDto;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
 import com.zhupeiting.bisheproject.mapper.UserMapper;
 import com.zhupeiting.bisheproject.model.Question;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +27,10 @@ public class IndexController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request ,Model model){
+    public String index(HttpServletRequest request ,
+                        Model model,
+                        @RequestParam(name = "page",defaultValue = "1")Integer page,
+                        @RequestParam(name = "size",defaultValue = "5")Integer size){
         String uri = authorizeUriWithParams;
         model.addAttribute("uri",uri);
         Cookie[] cookies = request.getCookies();
@@ -41,8 +46,8 @@ public class IndexController {
                 }
             }
         }
-        List<QuestionDto> questionDtoList = questionService.list();
-        model.addAttribute("questionDtoList",questionDtoList);
+        PageDto pageDto = questionService.list(page,size);
+        model.addAttribute("pageDto",pageDto);
         return "index";
     }
 }
