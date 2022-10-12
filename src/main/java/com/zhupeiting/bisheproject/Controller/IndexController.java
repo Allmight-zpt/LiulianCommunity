@@ -23,17 +23,18 @@ public class IndexController {
         String uri = authorizeUriWithParams;
         model.addAttribute("uri",uri);
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                Users user = userMapper.findByToken(token);
-                if(user != null){
-                    request.getSession().setAttribute("user",user);
+        if(cookies != null && cookies.length != 0){
+            for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    Users user = userMapper.findByToken(token);
+                    if(user != null){
+                        request.getSession().setAttribute("user",user);
+                    }
+                    break;
                 }
-                break;
             }
         }
-
         return "index";
     }
 }

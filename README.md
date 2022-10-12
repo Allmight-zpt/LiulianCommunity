@@ -6,6 +6,7 @@
 * 登录状态的保存，基于cookie实现登录状态的保存。
 * 数据库版本管理，基于flyway插件实现。
 * 发布问题功能
+* 首页展示问题列表功能
 
 ## 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
@@ -19,7 +20,7 @@
 * [spring 帮助文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support)
 * [spring 集成 mybatis ](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
 * [Flyway 插件管理数据库版本](https://flywaydb.org/documentation/getstarted/firststeps/maven/)
-
+* [Lombok 插件简化代码](http://wjhsh.net/janes-p-9242497.html/)
 ## 工具
 * [git 远程管理github仓库](https://git-scm.com/)
 * [Xmind 思维导图绘制软件](https://xmind.cn/)
