@@ -1,4 +1,4 @@
-package com.zhupeiting.bisheproject.Controller;
+package com.zhupeiting.bisheproject.controller;
 import com.zhupeiting.bisheproject.dto.AccessTokenDto;
 import com.zhupeiting.bisheproject.dto.GithubUser;
 import com.zhupeiting.bisheproject.mapper.UserMapper;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 

@@ -1,9 +1,8 @@
-package com.zhupeiting.bisheproject.Controller;
+package com.zhupeiting.bisheproject.controller;
 
 import com.zhupeiting.bisheproject.mapper.QuestionMapper;
 import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.Users;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -51,8 +50,7 @@ public class PublishController {
             model.addAttribute("error","标签不能为空");
             return "publish";
         }
-        Users user = null;
-        user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute("user");
         if(user == null){
             model.addAttribute("error","用户未登录");
             return "publish";
