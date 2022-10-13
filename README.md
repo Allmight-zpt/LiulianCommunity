@@ -49,4 +49,4 @@
 * ⑥ 开发站点使用令牌访问用户数据
 * ⑦ Github给出用户数据
 ### UML图如下：
-<img alt="OAuth授权流程图" height="616" src="E:\0_BiShe_Project\资料\其他资源\OAuth.png" width="836"/>
+![OAuth UML图](./assets/OAuth.png)
