@@ -1,10 +1,7 @@
 package com.zhupeiting.bisheproject.mapper;
 
 import com.zhupeiting.bisheproject.model.Users;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserMapper {
@@ -15,4 +12,10 @@ public interface UserMapper {
     Users findByToken(@Param("token") String token);
     @Select("select * from users where id = #{id}")
     Users findById(@Param("id") Integer id);
+
+    @Select("select * from users where account_id = #{accountId}")
+    Users findByAccountId(String accountId);
+
+    @Update("update users set name=#{name},token=#{token},gmt_modified=#{gmtModified},avatar_url=#{avatarUrl} where id=#{id}")
+    void update(Users user);
 }
