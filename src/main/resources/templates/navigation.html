@@ -31,7 +31,7 @@
                             <li><a href="/logout">推出登录</a></li>
                         </ul>
                     </li>
-                    <li th:if="${session.user == null}"><a th:href="${uri}">登录</a></li>
+                    <li th:if="${session.user == null}"><a th:href="${session.authorizeUriWithParams}">登录</a></li>
                 </ul>
             </div>
         </div>

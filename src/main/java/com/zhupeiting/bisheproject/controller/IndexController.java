@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class IndexController {
-    @Value("${github.authorize.uri.with.params}")
-    private String authorizeUriWithParams;
+
     @Autowired
     private QuestionService questionService;
 
@@ -25,8 +24,6 @@ public class IndexController {
     public String index(Model model,
                         @RequestParam(name = "page",defaultValue = "1")Integer page,
                         @RequestParam(name = "size",defaultValue = "5")Integer size){
-        String uri = authorizeUriWithParams;
-        model.addAttribute("uri",uri);
         PageDto pageDto = questionService.list(page,size);
         model.addAttribute("pageDto",pageDto);
         return "index";

@@ -4,6 +4,7 @@ import com.zhupeiting.bisheproject.dto.PageDto;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

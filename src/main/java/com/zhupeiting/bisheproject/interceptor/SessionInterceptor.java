@@ -3,6 +3,7 @@ package com.zhupeiting.bisheproject.interceptor;
 import com.zhupeiting.bisheproject.mapper.UserMapper;
 import com.zhupeiting.bisheproject.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
+    @Value("${github.authorize.uri.with.params}")
+    private String authorizeUriWithParams;
     @Autowired
     UserMapper userMapper;
     @Override
@@ -28,6 +31,9 @@ public class SessionInterceptor implements HandlerInterceptor {
                     break;
                 }
             }
+        }
+        if(request.getSession().getAttribute("authorizeUriWithParams") == null){
+            request.getSession().setAttribute("authorizeUriWithParams",authorizeUriWithParams);
         }
         return true;
     }
