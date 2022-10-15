@@ -98,4 +98,14 @@ public class QuestionService {
         questionDto.setUser(users);
         return questionDto;
     }
+
+    public void createOrUpdate(Question question) {
+        if(question.getId() == null){
+            //创建
+            questionMapper.create(question);
+        }else{
+            //更新
+            questionMapper.update(question);
+        }
+    }
 }
