@@ -4,6 +4,7 @@ import com.zhupeiting.bisheproject.dto.PageDto;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
 import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
 import com.zhupeiting.bisheproject.exception.CustomizeException;
+import com.zhupeiting.bisheproject.mapper.QuestionExtMapper;
 import com.zhupeiting.bisheproject.mapper.QuestionMapper;
 import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Question;
@@ -24,6 +25,8 @@ import java.util.List;
 public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     @Autowired
     private UsersMapper usersMapper;
 
@@ -130,5 +133,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

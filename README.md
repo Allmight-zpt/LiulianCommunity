@@ -12,6 +12,7 @@
 * 问题详情介绍界面
 * 使用mybatis generator自动根据数据库表结构生成mapper对象
 * 使用ControllerAdvice和ExceptionHandler统一处理异常
+* 问题阅读数量统计功能
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
@@ -71,6 +72,15 @@
 ### 概述：
 - 用于根据数据库表自动生成对应的model、mapper以及mapper对应的xml文件用于实现mapper中的sql语句，因此需要配置好三者的路径。配置好后，对于默认没有生成的一些sql语句可以使用生成的modelExample对象完成sql的拼接，而不需要自己手动写xml
 
+## 异常处理
+### 概述：
+- 异常处理的基本思路（待补充。。。）
+
+## 阅读数量统计
+### 概述：
+- 高并发时存在问题，因为n个用户可能同时拿到了相同的值导致最后只加一（待补充。。。)
+### 解决方法：
+- 加锁 或 sql语句直接解决
 # 脚本
 ```bash
 mvn flyway:migrate
