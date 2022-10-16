@@ -2,6 +2,8 @@ package com.zhupeiting.bisheproject.service;
 
 import com.zhupeiting.bisheproject.dto.PageDto;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
+import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
+import com.zhupeiting.bisheproject.exception.CustomizeException;
 import com.zhupeiting.bisheproject.mapper.QuestionMapper;
 import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Question;
@@ -55,7 +57,6 @@ public class QuestionService {
             questionDtoList.add(questionDto);
         }
         pageDto.setQuestions(questionDtoList);
-
         return pageDto;
     }
 
@@ -99,6 +100,9 @@ public class QuestionService {
 
     public QuestionDto getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if(question == null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(question,questionDto);
         Users users = usersMapper.selectByPrimaryKey(question.getCreator());
@@ -121,7 +125,10 @@ public class QuestionService {
             QuestionExample questionExample = new QuestionExample();
             questionExample.createCriteria()
                             .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            if(updated != 1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }

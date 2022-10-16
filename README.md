@@ -11,6 +11,7 @@
 * 添加拦截器进行登录验证
 * 问题详情介绍界面
 * 使用mybatis generator自动根据数据库表结构生成mapper对象
+* 使用ControllerAdvice和ExceptionHandler统一处理异常
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
