@@ -1,7 +1,6 @@
 package com.zhupeiting.bisheproject.controller;
 import com.zhupeiting.bisheproject.dto.AccessTokenDto;
 import com.zhupeiting.bisheproject.dto.GithubUser;
-import com.zhupeiting.bisheproject.mapper.UserMapper;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.provider.GithubProvider;
 import com.zhupeiting.bisheproject.service.UserService;

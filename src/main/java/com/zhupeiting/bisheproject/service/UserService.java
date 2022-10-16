@@ -1,29 +1,40 @@
 package com.zhupeiting.bisheproject.service;
 
-import com.zhupeiting.bisheproject.mapper.UserMapper;
+import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Users;
+import com.zhupeiting.bisheproject.model.UsersExample;
+import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
-    private UserMapper userMapper;
+    private UsersMapper usersMapper;
 
     public void createOrUpdate(Users user) {
-        Users dbUser = userMapper.findByAccountId(user.getAccountId());
-        if(dbUser == null){
+        UsersExample usersExample = new UsersExample();
+        usersExample.createCriteria()
+                .andAccountIdEqualTo(user.getAccountId());
+        List<Users> dbUser = usersMapper.selectByExample(usersExample);
+        if(dbUser.size() == 0){
             //插入
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-            userMapper.insert(user);
+            usersMapper.insert(user);
         }else{
             //更新
-            dbUser.setGmtModified(System.currentTimeMillis());
-            dbUser.setAvatarUrl(user.getAvatarUrl());
-            dbUser.setName(user.getName());
-            dbUser.setToken(user.getToken());
-            userMapper.update(dbUser);
+            Users updateUser = new Users();
+            updateUser.setGmtModified(user.getGmtModified());
+            updateUser.setAvatarUrl(user.getAvatarUrl());
+            updateUser.setName(user.getName());
+            updateUser.setToken(user.getToken());
+            usersExample = new UsersExample();
+            usersExample.createCriteria()
+                            .andIdEqualTo(dbUser.get(0).getId());
+            usersMapper.updateByExampleSelective(updateUser,usersExample);
         }
     }
 }

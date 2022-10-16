@@ -1,7 +1,9 @@
 package com.zhupeiting.bisheproject.interceptor;
 
-import com.zhupeiting.bisheproject.mapper.UserMapper;
+import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Users;
+import com.zhupeiting.bisheproject.model.UsersExample;
+import kotlin.internal.RequireKotlin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,12 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
     @Value("${github.authorize.uri.with.params}")
     private String authorizeUriWithParams;
     @Autowired
-    UserMapper userMapper;
+    private UsersMapper usersMapper;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Cookie[] cookies = request.getCookies();
@@ -24,9 +29,12 @@ public class SessionInterceptor implements HandlerInterceptor {
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("token")){
                     String token = cookie.getValue();
-                    Users user = userMapper.findByToken(token);
-                    if(user != null){
-                        request.getSession().setAttribute("user",user);
+                    UsersExample usersExample = new UsersExample();
+                    usersExample.createCriteria()
+                            .andTokenEqualTo(token);
+                    List<Users> user = usersMapper.selectByExample(usersExample);
+                    if(user.size() != 0){
+                        request.getSession().setAttribute("user",user.get(0));
                     }
                     break;
                 }

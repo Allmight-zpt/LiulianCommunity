@@ -1,8 +1,6 @@
 package com.zhupeiting.bisheproject.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
-import com.zhupeiting.bisheproject.mapper.QuestionMapper;
 import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.service.QuestionService;
@@ -45,7 +43,7 @@ public class PublishController {
             @RequestParam(value = "title",required = false)String title,
             @RequestParam(value = "description",required = false)String description,
             @RequestParam(value = "tag",required = false)String tag,
-            @RequestParam(value = "id")Integer id,
+            @RequestParam(value = "id" ,required = false)Integer id,
             HttpServletRequest request,
             Model model
             ) {

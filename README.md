@@ -10,6 +10,7 @@
 * 列表展示的分页功能
 * 添加拦截器进行登录验证
 * 问题详情介绍界面
+* 使用mybatis generator自动根据数据库表结构生成mapper对象
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
@@ -26,6 +27,7 @@
 * [Lombok 插件简化代码](http://wjhsh.net/janes-p-9242497.html/)
 * [thymeleaf 操作文档](http://thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration/)
 * [jquery 官网](https://jquery.com/)
+* [Mybatis Generator 操作文档](http://mybatis.org/generator/index.html)
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
@@ -63,3 +65,13 @@
 - 后端开发主要有Controller，Service，Mapper三个层。他们之间的调用关系如下：首先我们有一个数据库用于存储各类数据，数据库中的每一张表对应一个Model对象，Model中的对象都是最基本的Bean，由get set函数和一些属性构成，Mapper对象通过注入一个唯一的Model对象操作唯一的一张表，即Mapper和Model之间是一对一的调用关系。当Controller需要某一类数据的时候，比如用户的个人信息，那么这些数据都存在于User表中，Controller直接注入一个UserMapper就可以获取User表中的数据返回一个存有数据的UserModel。当然对于一些复杂的业务场景，可能同时需要两张表的信息，这时一个Mapper对象是解决不了的我们就需要注入多个Mapper，然后还需要实现多个Mapper之间的交互，这些操作写在Controller中会让Controller的代码过于杂乱，我们一般通过Service完成Mapper之间的交互，Service可以注入多个Mapper，完成交互然后返回数据给Controller，而数据的返回格式是Dto对象，这类对象不对应任何一张数据库表，它往往与业务需求相关联，是一个满足特定业务需求的数据存储对象，它的属性往往由多个数据库表的属性组成。因此当Controller层的业务需求涉及一张表时可以直接调用Mapper层，涉及多个表时可以抽象出Service层，Service层调用Mapper完成多表交互。
 ### 图解：
 ![后端三层架构图解](./assets/Con_Service_Mapper.png)
+
+## MBG（MyBatis Generator）
+### 概述：
+- 用于根据数据库表自动生成对应的model、mapper以及mapper对应的xml文件用于实现mapper中的sql语句，因此需要配置好三者的路径。配置好后，对于默认没有生成的一些sql语句可以使用生成的modelExample对象完成sql的拼接，而不需要自己手动写xml
+
+# 脚本
+```bash
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
