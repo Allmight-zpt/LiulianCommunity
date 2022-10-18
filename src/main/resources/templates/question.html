@@ -32,7 +32,6 @@
                     编辑
                 </a>
             </div>
-
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
                 <div class="media">
@@ -45,7 +44,7 @@
                         <h5 class="media-heading">
                             <span th:text="${questionDto.user.name}"></span>
                         </h5>
-                    </div>
+                    </div></x>
                 </div>
                 <input type="hidden" id="question_id" th:value="${questionDto.id}">
                 <textarea class="form-control comment" rows="6" id="comment_content"></textarea>

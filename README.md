@@ -88,6 +88,9 @@
 - 首先开发API使用postman进行测试，对于各类异常抛出交由CustomizeExceptionHandler处理
 - 然后添加事务机制
 - 对于前端界面，使用ajsx异步提交post请求到API就可以不刷新页面实现局部数据的更新
+- 如果回复时发现未登录（根据response code判断） 给出一个直接跳转登录的按钮
+- 跳转登录后要把新页面关闭 使用local
+
 
 # 脚本
 ```bash

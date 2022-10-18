@@ -29,9 +29,9 @@ public class CommentController {
     public Object post(@RequestBody CommentDto commentDto,
                        HttpServletRequest request){
         Users users = (Users) request.getSession().getAttribute("user");
-//        if(users == null){
-//            return ResultDto.errorOf(CustomizeErrorCode.NO_LOGIN);
-//        }
+        if(users == null){
+            return ResultDto.errorOf(CustomizeErrorCode.NO_LOGIN);
+        }
         Comment comment = new Comment();
         comment.setParentId(commentDto.getParentId());
         comment.setContent(commentDto.getContent());
@@ -39,7 +39,7 @@ public class CommentController {
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(comment.getGmtCreate());
         //待修改！ users.getId()
-        comment.setCommentator(7L);
+        comment.setCommentator(users.getId());
         comment.setLikeCount(0L);
         commentService.insert(comment);
         return ResultDto.okOf();
