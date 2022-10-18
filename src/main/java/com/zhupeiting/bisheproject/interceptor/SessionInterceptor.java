@@ -3,7 +3,6 @@ package com.zhupeiting.bisheproject.interceptor;
 import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.model.UsersExample;
-import kotlin.internal.RequireKotlin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

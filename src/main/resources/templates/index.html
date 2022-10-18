@@ -28,7 +28,7 @@
           </h4>
           <span th:text="${questionDto.description}"></span>
           <br>
-          <span class="text-desc"><span th:text="${questionDto.likeCount}"> 个点赞 • </span><span th:text="${questionDto.commentCount}"></span> 个回复 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${#dates.format(questionDto.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
+          <span class="text-desc"><span th:text="${questionDto.likeCount}"></span> 个点赞 • <span th:text="${questionDto.commentCount}"></span> 个回复 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${#dates.format(questionDto.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
         </div>
       </div>
       <nav aria-label="Page navigation">

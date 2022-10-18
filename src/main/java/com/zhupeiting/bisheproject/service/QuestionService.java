@@ -63,7 +63,7 @@ public class QuestionService {
         return pageDto;
     }
 
-    public PageDto list(Integer id, Integer page, Integer size) {
+    public PageDto list(Long id, Integer page, Integer size) {
         PageDto pageDto = new PageDto();
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
@@ -101,7 +101,7 @@ public class QuestionService {
         return pageDto;
     }
 
-    public QuestionDto getById(Integer id) {
+    public QuestionDto getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if(question == null){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -117,6 +117,9 @@ public class QuestionService {
         if(question.getId() == null){
             //创建
             //???存在问题 id为null时要用selective让其自增
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
             questionMapper.insertSelective(question);
         }else{
             //更新
@@ -135,7 +138,7 @@ public class QuestionService {
         }
     }
 
-    public void incView(Integer id) {
+    public void incView(Long id) {
         Question question = new Question();
         question.setId(id);
         question.setViewCount(1);

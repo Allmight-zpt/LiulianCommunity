@@ -13,6 +13,7 @@
 * 使用mybatis generator自动根据数据库表结构生成mapper对象
 * 使用ControllerAdvice和ExceptionHandler统一处理异常
 * 问题阅读数量统计功能
+* 问题评论功能
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
@@ -30,6 +31,7 @@
 * [thymeleaf 操作文档](http://thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration/)
 * [jquery 官网](https://jquery.com/)
 * [Mybatis Generator 操作文档](http://mybatis.org/generator/index.html)
+* [Postman 在线使用（前端没有搭起来时用于调试后端接口）](https://v7.apipost.cn/apis/)
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
@@ -74,7 +76,7 @@
 
 ## 异常处理
 ### 概述：
-- 异常处理的基本思路（待补充。。。）
+- 异常处理的基本思路: controller 和 service完成异常的抛出（service抛出也是在controller中接收）这样所有的异常都能被CustomizeExceptionHandler拦截然后根据不同异常类型进行处理有的返回json有的跳转error页面，获取异常的code 和 message进行展示（待补充。。。）
 
 ## 阅读数量统计
 ### 概述：
@@ -86,3 +88,8 @@
 mvn flyway:migrate
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
+
+# 待改进
+- 把所有的错误 包括未登录等等 都作为异常抛出在异常处理对象那里进行统一的拦截，在error界面进行统一展示
+- 或者是所有页面异常 比如不存在这个页面等 都跳转error页面进行展示，而其他异常不跳转以JSON格式返回 方便api测试
+- 目前在CustomizeExceptionHandler中实现 但有待改进
