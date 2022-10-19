@@ -1,10 +1,17 @@
 package com.zhupeiting.bisheproject.dto;
 
+import com.zhupeiting.bisheproject.model.Users;
 import lombok.Data;
 
 @Data
 public class CommentDto {
+    private Long id;
     private Long parentId;
-    private String content;
     private Integer commentType;
+    private Long commentator;
+    private Long gmtCreate;
+    private Long gmtModified;
+    private Long likeCount;
+    private String content;
+    private Users users;
 }

@@ -76,20 +76,27 @@
 
 ## 异常处理
 ### 概述：
-- 异常处理的基本思路: controller 和 service完成异常的抛出（service抛出也是在controller中接收）这样所有的异常都能被CustomizeExceptionHandler拦截然后根据不同异常类型进行处理有的返回json有的跳转error页面，获取异常的code 和 message进行展示（待补充。。。）
+- 异常处理的基本思路: controller 和 service完成异常的抛出（service抛出也是在controller中接收）这样所有的异常都能被CustomizeExceptionHandler拦截然后根据不同异常类型进行处理，对于一些API接口返回json格式的数据（一般包含从异常中获取的code 和 message两部分），其他url则跳转到error页面，获取异常的code 和 message进行展示
+### 具体实现:
+- 首先定义一个IErrorCode接口，它包含有getCode和getMessage两个方法。
+- 其次对于每一个功能模块（或者其他划分单位如每个Controller、Service）我们可以定义一个枚举对象ErrorCode，每个枚举对象有code和message两个属性，用来定义每个异常对应的code和message。然后这个枚举对象必须实现IErrorCode接口。
+- 到这里对于每个功能模块我们都有了对应的异常枚举，缺的就是异常对象了，我们定义一个异常对象，他的有参构造是接受一个异常枚举ErrorCode（当然写的是接口IErrorCode，这样可以利用多态，提高可扩展性）。这个异常对象拥有code和message两个属性对应每个枚举对象的两个属性。
+- 这样我们可以通过定义一个ExceptionHandler对象对异常进行拦截，然后根据是API接口还是页面异常选择返回JSON数据还是跳转error页面展示异常message
 
 ## 阅读数量统计
 ### 概述：
-- 高并发时存在问题，因为n个用户可能同时拿到了相同的值导致最后只加一（待补充。。。)
+- 每次访问问题详情页面URL时阅读量加一，即在Controller实现。 
+### 存在问题：
+- 高并发时存在问题，因为n个用户可能同时拿到了相同的初始阅读量值然后各自加一后写回，导致最后只加一。
 ### 解决方法：
-- 加锁 或 sql语句直接解决
+- 加锁可以直接解决但编码相对麻烦且开销大。此处我们考虑使用sql语句解决，原本是在代码中实现加一然后update语句写回，现在改成直接在update中追加，即每次运行sql语句都加一就行了，不需要手动编码计算加一。
 
-## 回复功能 （待补充。。。）
-- 首先开发API使用postman进行测试，对于各类异常抛出交由CustomizeExceptionHandler处理
-- 然后添加事务机制
-- 对于前端界面，使用ajsx异步提交post请求到API就可以不刷新页面实现局部数据的更新
-- 如果回复时发现未登录（根据response code判断） 给出一个直接跳转登录的按钮
-- 跳转登录后要把新页面关闭 使用local
+## 回复功能（API开发）
+### 具体实现：
+- 首先开发一个API，功能是接收回复内容等相关数据，返回的是JSON格式的响应数据，包括code和message，接口也实现了一些异常的检测，抛出后交由异常处理模块统一处理（此处因为是API抛出的异常会判断后返回JSON数据”异常处理“部分已经说明，不再赘述。），使用postman进行测试。
+- 由于回复功能处理要将回复内容写入Comment表外，还需要在question中增加评论数量，因此使用事务保证两个操作的原子性。
+- 对于前端界面，使用ajax异步提交post请求到API，然后根据API返回不同的code进行判断，这样不刷新页面就可以实现局部数据的更新。
+- 如果回复时发现未登录（根据response code判断） 给出一个直接跳转登录的按钮。跳转登录后要把新页面关闭，使用localStorage存储关闭页面的参数，判断后即可进行页面关闭。
 
 
 # 脚本
