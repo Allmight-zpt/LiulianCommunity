@@ -60,12 +60,12 @@ public class CommentService {
         }
     }
 
-    public List<CommentDto> listByQuestionId(Long id) {
+    public List<CommentDto> listByTargetId(Long id,CommentTypeEnum type) {
         //获取该问题的所有回复
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                         .andParentIdEqualTo(id)
-                        .andCommentTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+                        .andCommentTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
         if(comments.size() == 0){

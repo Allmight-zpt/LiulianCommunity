@@ -1,19 +1,20 @@
 package com.zhupeiting.bisheproject.controller;
 
 import com.zhupeiting.bisheproject.dto.CommentCreateDto;
+import com.zhupeiting.bisheproject.dto.CommentDto;
 import com.zhupeiting.bisheproject.dto.ResultDto;
+import com.zhupeiting.bisheproject.enums.CommentTypeEnum;
 import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
 import com.zhupeiting.bisheproject.model.Comment;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -43,4 +44,12 @@ public class CommentController {
         commentService.insert(comment);
         return ResultDto.okOf();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}",method = RequestMethod.GET)
+    public ResultDto<List<CommentDto>> comments(@PathVariable(name = "id")Long id){
+        List<CommentDto> commentDtoList = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDto.okOf(commentDtoList);
+    }
+
 }
