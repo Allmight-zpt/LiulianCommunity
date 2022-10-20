@@ -5,10 +5,7 @@ import com.zhupeiting.bisheproject.dto.CommentDto;
 import com.zhupeiting.bisheproject.enums.CommentTypeEnum;
 import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
 import com.zhupeiting.bisheproject.exception.CustomizeException;
-import com.zhupeiting.bisheproject.mapper.CommentMapper;
-import com.zhupeiting.bisheproject.mapper.QuestionExtMapper;
-import com.zhupeiting.bisheproject.mapper.QuestionMapper;
-import com.zhupeiting.bisheproject.mapper.UsersMapper;
+import com.zhupeiting.bisheproject.mapper.*;
 import com.zhupeiting.bisheproject.model.*;
 import org.h2.engine.User;
 import org.springframework.beans.BeanUtils;
@@ -32,7 +29,8 @@ public class CommentService {
     private QuestionExtMapper questionExtMapper;
     @Autowired
     private UsersMapper usersMapper;
-
+    @Autowired
+    private CommentExtMapper commentExtMapper;
     @Transactional
     public void insert(Comment comment) {
         if(comment.getParentId() == null || comment.getParentId() == 0){
@@ -48,6 +46,11 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insertSelective(comment);
+            //增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         }else{
             // 回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());

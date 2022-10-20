@@ -55,16 +55,23 @@ body{
     color: #999;
     margin-top: 5px;
 }
+.menu .icon-text{
+    margin-right: 15px;
+    padding: 5px;
+}
 .menu .icon{
-    margin-right: 6px;
+    margin-right: 5px;
     font-size: 15px;
     cursor: pointer;
 }
 .menu .active{
     color: #499ef3;
+    background-color: #e0e0e0;
 }
-.menu .icon:hover{
+
+.menu .icon-text:hover{
     color: #499ef3;
+    background-color: #e0e0e0;
 }
 .comments{
     padding-bottom: 5px;

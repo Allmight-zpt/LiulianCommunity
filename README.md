@@ -32,6 +32,7 @@
 * [jquery 官网](https://jquery.com/)
 * [Mybatis Generator 操作文档](http://mybatis.org/generator/index.html)
 * [Postman 在线使用（前端没有搭起来时用于调试后端接口）](https://v7.apipost.cn/apis/)
+* [comment.js 官网，用于时间戳的转换](http://momentjs.cn/)
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
@@ -100,6 +101,7 @@
 
 ## 评论列表展示（API开发）
 - 一级评论是每次请求页面时在Controller中调用查询数据库的功能，然后把数据放入model中传递到页面，页面获取数据后展示。二级评论不能这么做，如果每次加载页面时都要先把所有二级评论加载好放入model中，那么页面请求会变慢，而且二级评论默认是关闭的，我们只需要在点击时显示就行，因此作为一个API，访问二级评论的API时给出父评论Id返回子评论数据，然后在前端展示即可。也就是之前回复功能API接口返回code和message的基础上再返回一个data数据就行。而且只有返回一个页面时才能加上model，返回JSON的API接口model和前端某一个界面是绑定不了的。
+- 二级评论提交页面刷新后仍然保持展开的功能：每次提交二级评论时，把当前二级评论父节点的id写入localStorage，每次页面加载到最后，运行script脚本读取id将其二级评论展开即可。
 
 # 脚本
 ```bash
@@ -112,4 +114,4 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 或者是所有页面异常 比如不存在这个页面等 都跳转error页面进行展示，而其他异常不跳转以JSON格式返回 方便api测试
 - 目前在CustomizeExceptionHandler中实现 但有待改进
 
-1.二级评论界面 2.二级评论功能ajax异步提交post请求到API 3.二级评论查询API（通过controller接口查询数据库获取）
+1.完成了二级评论页面展示，将API接口返回的数据绘制到页面上。 2.实现了二级评论提交页面刷新后，仍让保持展开二级评论的功能
