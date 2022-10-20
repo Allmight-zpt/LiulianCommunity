@@ -62,6 +62,15 @@ public class QuestionService {
             Users user = usersMapper.selectByPrimaryKey(question.getCreator());
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(question,questionDto);
+            /**
+             * 当description太长时，截取一部分即可
+             * */
+            String desc = questionDto.getDescription();
+            if(desc.length() > 20){
+                desc = desc.substring(0,21) + "......";
+            }
+            questionDto.setDescription(desc);
+            /***/
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
@@ -101,6 +110,15 @@ public class QuestionService {
         for (Question question : questionList) {
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(question,questionDto);
+            /**
+             * 当description太长时，截取一部分即可
+             * */
+            String desc = questionDto.getDescription();
+            if(desc.length() > 20){
+                desc = desc.substring(0,21) + "......";
+            }
+            questionDto.setDescription(desc);
+            /***/
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
