@@ -56,9 +56,9 @@ public class TagCache {
 
     public static String filterInvalid(String tags){
         String[] split = tags.split(",");
-        List<TagDto> tagDtoList = TagCache.get();
+        List<TagDto> tagDtoList = get();
         List<String> tagList = tagDtoList.stream().flatMap(tag->tag.getTags().stream()).collect(Collectors.toList());
-        String invalid = Arrays.stream(split).filter(t->tagList.contains(t)).collect(Collectors.joining(","));
+        String invalid = Arrays.stream(split).filter(t->!tagList.contains(t)).collect(Collectors.joining(","));
         return invalid;
     }
 }

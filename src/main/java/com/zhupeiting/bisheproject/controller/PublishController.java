@@ -76,7 +76,7 @@ public class PublishController {
             return "publish";
         }
         String invalid = TagCache.filterInvalid(tag);
-        if(invalid == null || "".equals(invalid)){
+        if(invalid != null && !("".equals(invalid))){
             model.addAttribute("error","存在非法标签：" + invalid);
             return "publish";
         }
