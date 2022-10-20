@@ -113,5 +113,3 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 把所有的错误 包括未登录等等 都作为异常抛出在异常处理对象那里进行统一的拦截，在error界面进行统一展示
 - 或者是所有页面异常 比如不存在这个页面等 都跳转error页面进行展示，而其他异常不跳转以JSON格式返回 方便api测试
 - 目前在CustomizeExceptionHandler中实现 但有待改进
-
-1.完成了二级评论页面展示，将API接口返回的数据绘制到页面上。 2.实现了二级评论提交页面刷新后，仍让保持展开二级评论的功能

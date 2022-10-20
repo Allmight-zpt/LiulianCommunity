@@ -38,7 +38,7 @@ body{
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 15px;
-    border: 1px solid #eee;
+    border: 3px solid #eee;
     padding-top: 15px;
 }
 .sub-comments .btn{
@@ -80,4 +80,17 @@ body{
 }
 .question-title{
     margin-top: 30px;
+}
+.question-tag{
+    margin-right: 5px;
+}
+.question-related{
+    line-height: 25px;
+    font-size: 15px;
+    margin-left: 0;
+    list-style: none;
+    padding-left: 0;
+}
+.question-wechat{
+    width: 100%;
 }

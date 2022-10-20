@@ -11,12 +11,16 @@ import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.QuestionExample;
 import com.zhupeiting.bisheproject.model.Users;
 import org.apache.ibatis.session.RowBounds;
+import org.h2.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //questionMapper专门负责question表，当涉及两个表内容的整合时不能再mapper中实现
 //要抽象出一个dto传输层的对象负责存储两个表要整合的信息 然后再service调用mapper完成整合
@@ -49,7 +53,9 @@ public class QuestionService {
         }
         pageDto.setPageDto(totalPage,page);
         Integer offset = size * (page-1);
-        List<Question> questionList = questionMapper.selectByExampleWithRowbounds(new QuestionExample(),new RowBounds(offset,size));
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.setOrderByClause("gmt_create desc");
+        List<Question> questionList = questionMapper.selectByExampleWithRowbounds(questionExample,new RowBounds(offset,size));
         List<QuestionDto>questionDtoList = new ArrayList<>();
 
         for (Question question : questionList) {
@@ -88,6 +94,7 @@ public class QuestionService {
         questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(id);
+        questionExample.setOrderByClause("gmt_create desc");
         List<Question> questionList = questionMapper.selectByExampleWithRowbounds(questionExample,new RowBounds(offset,size));
         List<QuestionDto>questionDtoList = new ArrayList<>();
         Users user = usersMapper.selectByPrimaryKey(id);
@@ -143,5 +150,23 @@ public class QuestionService {
         question.setId(id);
         question.setViewCount(1);
         questionExtMapper.incView(question);
+    }
+
+    public List<QuestionDto> selectRelated(QuestionDto queryDto) {
+        if(queryDto.getTag() == null || "".equals(queryDto.getTag())){
+            return new ArrayList<>();
+        }
+        String[] tags = queryDto.getTag().split(",");
+        String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Question question = new Question();
+        question.setId(queryDto.getId());
+        question.setTag(regexpTag);
+        List<Question> relatedQuestions = questionExtMapper.selectRelated(question);
+        List<QuestionDto> relatedQuestionsDto = relatedQuestions.stream().map(q->{
+            QuestionDto questionDto = new QuestionDto();
+            BeanUtils.copyProperties(q,questionDto);
+            return questionDto;
+        }).collect(Collectors.toList());
+        return relatedQuestionsDto;
     }
 }
