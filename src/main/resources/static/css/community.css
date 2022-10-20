@@ -82,7 +82,9 @@ body{
     margin-top: 30px;
 }
 .question-tag{
-    margin-right: 5px;
+    padding-top: 6px;
+    margin-right: 10px;
+    font-size: 15px;
 }
 .question-related{
     line-height: 25px;
@@ -93,4 +95,14 @@ body{
 }
 .question-wechat{
     width: 100%;
+}
+.publish-tag-tab{
+    display: none;
+    margin-top: 10px;
+}
+.publish-tag-tab .label-info{
+    margin-right: 10px;
+}
+.publish-tag-tab .tab-content{
+    margin-top: 15px;
 }

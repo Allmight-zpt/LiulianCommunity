@@ -1,6 +1,8 @@
 package com.zhupeiting.bisheproject.controller;
 
+import com.zhupeiting.bisheproject.cache.TagCache;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
+import com.zhupeiting.bisheproject.dto.TagDto;
 import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.service.QuestionService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class PublishController {
@@ -30,11 +33,13 @@ public class PublishController {
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
         model.addAttribute("id",question.getId());
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
     // get 渲染页面
     @GetMapping("/publish")
-    public String publish(){
+    public String publish(Model model){
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
     // post 发送请求（publish中的发布功能调用该接口是post方式）
@@ -52,6 +57,7 @@ public class PublishController {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
+        model.addAttribute("tags", TagCache.get());
         if(title == null || title == ""){
             model.addAttribute("error","标题不能为空");
             return "publish";
@@ -67,6 +73,11 @@ public class PublishController {
         Users user = (Users) request.getSession().getAttribute("user");
         if(user == null){
             model.addAttribute("error","用户未登录");
+            return "publish";
+        }
+        String invalid = TagCache.filterInvalid(tag);
+        if(invalid == null || "".equals(invalid)){
+            model.addAttribute("error","存在非法标签：" + invalid);
             return "publish";
         }
         Question question = new Question();

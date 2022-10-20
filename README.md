@@ -14,6 +14,7 @@
 * 使用ControllerAdvice和ExceptionHandler统一处理异常
 * 问题阅读数量统计功能
 * 问题评论功能
+* 相关问题推荐功能
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
