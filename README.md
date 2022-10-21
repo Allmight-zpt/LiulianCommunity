@@ -15,6 +15,7 @@
 * 问题阅读数量统计功能
 * 问题评论功能
 * 相关问题推荐功能
+* 问题编辑功能实现markdown支持
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
@@ -34,6 +35,7 @@
 * [Mybatis Generator 操作文档](http://mybatis.org/generator/index.html)
 * [Postman 在线使用（前端没有搭起来时用于调试后端接口）](https://v7.apipost.cn/apis/)
 * [comment.js 官网，用于时间戳的转换](http://momentjs.cn/)
+* [Editor.md 可嵌入markdown编辑器](https://pandao.github.io/editor.md/)
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
@@ -122,3 +124,5 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 每个用户有主页信息
 - 导航栏如何获取未读信息数量？(用js脚本请求一下数据库) ->已经修复使用session存储数据这样可以在全局获取
 - 最新回复消息显示时间等信息 类似我的问题界面
+- 提问时标签悬浮鼠标变成一只手的实现
+- 评论文本框改成之前文件系统的富文本编辑器
