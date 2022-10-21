@@ -69,7 +69,7 @@
                             </a>
                         </li>
                         <li th:each="page : ${pageDto.pages}" th:class="${pageDto.page == page}? 'active' : '' ">
-                            <a th:href="@{/(page=${page})}" th:text="${page}" ></a>
+                            <a th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}" ></a>
                         </li>
                         <li th:if="${pageDto.showNext}">
                             <a th:href="@{'/profile/'+${section}(page=${pageDto.page + 1})}" aria-label="Next">
