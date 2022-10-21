@@ -1,0 +1,10 @@
+create table notification
+(
+    id         bigint auto_increment primary key ,
+    notifier   bigint not null ,
+    receiver   bigint not null ,
+    outerId    bigint not null ,
+    note_type  int not null ,
+    gmt_create bigint not null ,
+    status     int default 0 not null
+);

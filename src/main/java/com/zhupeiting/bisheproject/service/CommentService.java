@@ -1,13 +1,13 @@
 package com.zhupeiting.bisheproject.service;
 
-import com.zhupeiting.bisheproject.dto.CommentCreateDto;
 import com.zhupeiting.bisheproject.dto.CommentDto;
 import com.zhupeiting.bisheproject.enums.CommentTypeEnum;
+import com.zhupeiting.bisheproject.enums.NotificationStatusEnum;
+import com.zhupeiting.bisheproject.enums.NotificationTypeEnum;
 import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
 import com.zhupeiting.bisheproject.exception.CustomizeException;
 import com.zhupeiting.bisheproject.mapper.*;
 import com.zhupeiting.bisheproject.model.*;
-import org.h2.engine.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +31,10 @@ public class CommentService {
     private UsersMapper usersMapper;
     @Autowired
     private CommentExtMapper commentExtMapper;
+    @Autowired
+    private NotificationMapper notificationMapper;
     @Transactional
-    public void insert(Comment comment) {
+    public void insert(Comment comment,Users commentator) {
         if(comment.getParentId() == null || comment.getParentId() == 0){
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
@@ -45,12 +47,25 @@ public class CommentService {
             if(dbComment == null){
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
+
+            /**
+             * 查找评论对应的问题
+             * */
+            System.out.println("???");
+            Question question = questionMapper.selectByPrimaryKey(dbComment.getParentId());
+            if(question == null){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+            /***/
+
             commentMapper.insertSelective(comment);
             //增加评论数
             Comment parentComment = new Comment();
             parentComment.setId(comment.getParentId());
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
+            //创建通知
+            createNotify(comment,dbComment.getCommentator(), commentator.getName(), question.getTitle(), NotificationTypeEnum.REPLY_COMMENT,question.getId());
         }else{
             // 回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -60,7 +75,23 @@ public class CommentService {
             commentMapper.insertSelective(comment);
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
+            //创建通知
+            createNotify(comment,question.getCreator(),commentator.getName(),question.getTitle(),NotificationTypeEnum.REPLY_QUESTION,question.getId());
         }
+    }
+
+    private void createNotify(Comment comment, Long receiver , String notifierName, String outerTitle, NotificationTypeEnum NotificationType,Long outerid){
+        Notification notification = new Notification();
+        notification.setGmtCreate(System.currentTimeMillis());
+        notification.setNoteType(NotificationType.getNoteType());
+        //这里的outerid 无论是回复问题还是回复评论都是问题的id 因为都需要跳转到问题详情页面查看回复内容
+        notification.setOuterid(outerid);
+        notification.setNotifier(comment.getCommentator());
+        notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+        notification.setReceiver(receiver);
+        notification.setNotifierName(notifierName);
+        notification.setOuterTitle(outerTitle);
+        notificationMapper.insertSelective(notification);
     }
 
     public List<CommentDto> listByTargetId(Long id,CommentTypeEnum type) {

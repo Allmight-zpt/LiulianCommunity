@@ -11,12 +11,10 @@ import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.QuestionExample;
 import com.zhupeiting.bisheproject.model.Users;
 import org.apache.ibatis.session.RowBounds;
-import org.h2.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +33,7 @@ public class QuestionService {
     private UsersMapper usersMapper;
 
     public PageDto list(Integer page, Integer size) {
-        PageDto pageDto = new PageDto();
+        PageDto<QuestionDto> pageDto = new PageDto<>();
         Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
         //计算总页数
         Integer totalPage;
@@ -51,6 +49,16 @@ public class QuestionService {
         if(page > totalPage){
             page = totalPage;
         }
+        /**
+         * 分页时列表为空的特殊处理
+         * */
+        if(page == 0) {
+            pageDto.setPageDto(1,1);
+            List<QuestionDto>questionDtoList = new ArrayList<>();
+            pageDto.setData(questionDtoList);
+            return pageDto;
+        }
+        /***/
         pageDto.setPageDto(totalPage,page);
         Integer offset = size * (page-1);
         QuestionExample questionExample = new QuestionExample();
@@ -74,12 +82,12 @@ public class QuestionService {
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        pageDto.setQuestions(questionDtoList);
+        pageDto.setData(questionDtoList);
         return pageDto;
     }
 
     public PageDto list(Long id, Integer page, Integer size) {
-        PageDto pageDto = new PageDto();
+        PageDto<QuestionDto> pageDto = new PageDto<>();
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(id);
@@ -98,6 +106,16 @@ public class QuestionService {
         if(page > totalPage){
             page = totalPage;
         }
+        /**
+         * 分页时列表为空的特殊处理
+         * */
+        if(page == 0) {
+            pageDto.setPageDto(1,1);
+            List<QuestionDto>questionDtoList = new ArrayList<>();
+            pageDto.setData(questionDtoList);
+            return pageDto;
+        }
+        /***/
         pageDto.setPageDto(totalPage,page);
         Integer offset = size * (page-1);
         questionExample = new QuestionExample();
@@ -122,7 +140,7 @@ public class QuestionService {
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        pageDto.setQuestions(questionDtoList);
+        pageDto.setData(questionDtoList);
         return pageDto;
     }
 

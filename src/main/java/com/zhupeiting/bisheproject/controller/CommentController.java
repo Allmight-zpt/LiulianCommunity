@@ -41,7 +41,7 @@ public class CommentController {
         //待修改！ users.getId()
         comment.setCommentator(users.getId());
         comment.setLikeCount(0L);
-        commentService.insert(comment);
+        commentService.insert(comment,users);
         return ResultDto.okOf();
     }
 
