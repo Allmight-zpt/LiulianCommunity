@@ -120,5 +120,5 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 分页列表 当列表为空时 展示空列表icon
 - 相关问题取top k个即可
 - 每个用户有主页信息
-- 导航栏如何获取未读信息数量？
+- 导航栏如何获取未读信息数量？(用js脚本请求一下数据库) ->已经修复使用session存储数据这样可以在全局获取
 - 最新回复消息显示时间等信息 类似我的问题界面

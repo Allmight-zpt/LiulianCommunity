@@ -57,7 +57,7 @@ public class NotificationService {
         notificationExample = new NotificationExample();
         notificationExample.createCriteria()
                 .andReceiverEqualTo(id);
-        notificationExample.setOrderByClause("gmt_create desc");
+        notificationExample.setOrderByClause("status asc, gmt_create desc");
         List<Notification> notificationList = notificationMapper.selectByExampleWithRowbounds(notificationExample,new RowBounds(offset,size));
         if(notificationList.size() == 0){
             return pageDto;

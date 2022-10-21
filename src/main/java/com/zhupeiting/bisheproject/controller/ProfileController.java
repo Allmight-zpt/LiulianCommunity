@@ -38,14 +38,9 @@ public class ProfileController {
         } else if("replies".equals(action)){
             model.addAttribute("section","replies");
             model.addAttribute("sectionName","最新回复");
-
-            Long unreadCount = notificationService.unreadCount(users.getId());
-            model.addAttribute("unreadCount",unreadCount);
-            System.out.println("???"+unreadCount);
             PageDto pageDto = notificationService.list(users.getId(),page,size);
             model.addAttribute("pageDto",pageDto);
         }
-
         return "profile";
     }
 }

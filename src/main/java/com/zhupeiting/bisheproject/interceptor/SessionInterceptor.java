@@ -3,6 +3,7 @@ package com.zhupeiting.bisheproject.interceptor;
 import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.model.UsersExample;
+import com.zhupeiting.bisheproject.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class SessionInterceptor implements HandlerInterceptor {
     private String authorizeUriWithParams;
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -34,6 +37,8 @@ public class SessionInterceptor implements HandlerInterceptor {
                     List<Users> user = usersMapper.selectByExample(usersExample);
                     if(user.size() != 0){
                         request.getSession().setAttribute("user",user.get(0));
+                        Long unreadCount = notificationService.unreadCount(user.get(0).getId());
+                        request.getSession().setAttribute("unreadCount",unreadCount);
                     }
                     break;
                 }
