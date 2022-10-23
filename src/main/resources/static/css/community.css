@@ -68,7 +68,9 @@ body{
     color: #499ef3;
     background-color: #e0e0e0;
 }
-
+.menu .like{
+    color: #499ef3;
+}
 .menu .icon-text:hover{
     color: #499ef3;
     background-color: #e0e0e0;
@@ -108,4 +110,12 @@ body{
 }
 .publish-tag-tab .tab-content{
     margin-top: 15px;
+}
+.badge{
+    background-color: #d9534f;
+}
+.footer{
+    text-align: center;
+    padding: 20px 25%;
+    color: #666;
 }

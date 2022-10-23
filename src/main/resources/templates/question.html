@@ -77,10 +77,12 @@
                             </h5>
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
-    <!--                            点击后变成实心 glyphicon glyphicon-heart-->
-                                <span class="icon-text">
-                                    <span class="glyphicon glyphicon-heart-empty icon" ></span>
-                                    <span th:text="${comment.likeCount}"></span>
+                                <span class="icon-text"
+                                      th:data-id="${comment.id}"
+                                      onclick="likeComments(this)">
+                                    <span class="glyphicon glyphicon-heart-empty icon"
+                                          th:id="${'comment-heart-icon-'+comment.id}"></span>
+                                    <span th:text="${comment.likeCount}" th:id="${'comment-heart-text-'+comment.id}"></span>
                                 </span>
                                 <span class="icon-text"
                                       th:id="${'comment-icon'+comment.id}"
@@ -109,13 +111,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
                     <div class="media">
                         <div class="media-left">
-                            <a th:href="${questionDto.user.avatarUrl}">
+                            <a th:href="${session.user.avatarUrl}">
                                 <img class="media-object img-rounded" th:src="${questionDto.user.avatarUrl}">
                             </a>
                         </div>
                         <div class="media-body">
                             <h5 class="media-heading">
-                                <span th:text="${questionDto.user.name}"></span>
+                                <span th:text="${session.user.name}"></span>
                             </h5>
                         </div></x>
                     </div>
@@ -145,7 +147,7 @@
 <!--            微信号-->
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>微信联系</h4>
+                <h4>站长微信</h4>
                 <img class="img-thumbnail question-wechat" src="/images/weixin.jpg">
             </div>
 
@@ -162,6 +164,7 @@
         </div>
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 <script>
     // 如果是提交二级评论 刷新后还要保持打开状态

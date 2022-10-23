@@ -122,6 +122,66 @@ function collapseComments(e){
 }
 
 /**
+ * 点赞按钮
+ * */
+function likeComments(e){
+    var id = e.getAttribute("data-id");
+    var heart_icon = $("#comment-heart-icon-" + id);
+    console.log(id);
+    var like = e.getAttribute("like","yes");
+    if(like){
+        //取消点赞
+        heart_icon.removeClass("glyphicon-heart");
+        heart_icon.addClass("glyphicon-heart-empty");
+        e.removeAttribute("like");
+        e.classList.remove("like");
+        //调用API进行数据库操作
+        $.ajax({
+            type:"POST",
+            url:"/comment/like",
+            contentType:"application/json",
+            data:JSON.stringify({
+                "id":id,
+                "isLike":0
+            }),
+            success:function (response){
+                if(response.code != 200){
+                    alert(response.message);
+                }else{
+
+                }
+            },
+            dataType:"json"
+        })
+    }else{
+        //点赞
+        heart_icon.removeClass("glyphicon-heart-empty");
+        heart_icon.addClass("glyphicon-heart");
+        e.setAttribute("like","yes");
+        e.classList.add("like");
+        //调用API进行数据库操作
+        $.ajax({
+            type:"POST",
+            url:"/comment/like",
+            contentType:"application/json",
+            data:JSON.stringify({
+                "id":id,
+                "isLike":1
+            }),
+            success:function (response){
+                if(response.code != 200){
+                    alert(response.message);
+                }else{
+
+                }
+            },
+            dataType:"json"
+        })
+    }
+}
+
+
+/**
  * 选择标签
  * */
 function selectTag(e){

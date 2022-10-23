@@ -124,4 +124,17 @@ public class CommentService {
         }).collect(Collectors.toList());
         return commentDtos;
     }
+
+    public void likeOrUnlike(Long id, Long isLike) {
+        Comment comment = new Comment();
+        comment.setId(id);
+        if(isLike == 1){
+            //点赞数量++
+            comment.setLikeCount(1L);
+        }else{
+            //点赞数量--
+            comment.setLikeCount(-1L);
+        }
+        commentExtMapper.likeOrUnlike(comment);
+    }
 }

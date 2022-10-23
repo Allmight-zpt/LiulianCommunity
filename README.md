@@ -126,3 +126,5 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 最新回复消息显示时间等信息 类似我的问题界面
 - 提问时标签悬浮鼠标变成一只手的实现
 - 评论文本框改成之前文件系统的富文本编辑器
+- 社区和文件服务器单点登录
+- 增加图片上传功能抛出异常

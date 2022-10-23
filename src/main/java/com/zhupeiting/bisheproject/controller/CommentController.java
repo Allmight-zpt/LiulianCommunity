@@ -2,6 +2,7 @@ package com.zhupeiting.bisheproject.controller;
 
 import com.zhupeiting.bisheproject.dto.CommentCreateDto;
 import com.zhupeiting.bisheproject.dto.CommentDto;
+import com.zhupeiting.bisheproject.dto.LikeDto;
 import com.zhupeiting.bisheproject.dto.ResultDto;
 import com.zhupeiting.bisheproject.enums.CommentTypeEnum;
 import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
@@ -52,4 +53,10 @@ public class CommentController {
         return ResultDto.okOf(commentDtoList);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/comment/like",method = RequestMethod.POST)
+    public ResultDto<String> likeOrUnlike(@RequestBody LikeDto likeDto){
+        commentService.likeOrUnlike(likeDto.getId(),likeDto.getIsLike());
+        return ResultDto.okOf();
+    }
 }
