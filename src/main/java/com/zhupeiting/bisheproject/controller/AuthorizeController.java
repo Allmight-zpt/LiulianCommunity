@@ -4,6 +4,7 @@ import com.zhupeiting.bisheproject.dto.GithubUser;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.provider.GithubProvider;
 import com.zhupeiting.bisheproject.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import java.util.UUID;
  * OAuth授权登录Controller
  * */
 @Controller
+@Slf4j
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
@@ -60,6 +62,7 @@ public class AuthorizeController {
             return "redirect:/";
         }else{
             //登录失败
+            log.error("callback get gitee error,{}",githubUser);
             return "redirect:/";
         }
     }
