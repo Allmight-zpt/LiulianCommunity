@@ -130,3 +130,6 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 评论文本框改成之前文件系统的富文本编辑器
 - 社区和文件服务器单点登录
 - 增加图片上传功能抛出异常
+- 基于ES的搜索功能
+- 基于spring 定时器的热门话题功能
+- 单独的标签页面

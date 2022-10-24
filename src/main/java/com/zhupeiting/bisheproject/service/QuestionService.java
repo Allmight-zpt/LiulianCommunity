@@ -2,6 +2,7 @@ package com.zhupeiting.bisheproject.service;
 
 import com.zhupeiting.bisheproject.dto.PageDto;
 import com.zhupeiting.bisheproject.dto.QuestionDto;
+import com.zhupeiting.bisheproject.dto.QuestionQueryDto;
 import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
 import com.zhupeiting.bisheproject.exception.CustomizeException;
 import com.zhupeiting.bisheproject.mapper.QuestionExtMapper;
@@ -32,9 +33,17 @@ public class QuestionService {
     @Autowired
     private UsersMapper usersMapper;
 
-    public PageDto list(Integer page, Integer size) {
+    public PageDto list(String search, String tag, Integer page, Integer size) {
+        if(!(search == null || "".equals(search))){
+            String[] tags = search.split(" ");
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+
         PageDto<QuestionDto> pageDto = new PageDto<>();
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
+        QuestionQueryDto questionQueryDto = new QuestionQueryDto();
+        questionQueryDto.setSearch(search);
+        questionQueryDto.setTag(tag);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDto);
         //计算总页数
         Integer totalPage;
         if(totalCount % size == 0){
@@ -61,9 +70,9 @@ public class QuestionService {
         /***/
         pageDto.setPageDto(totalPage,page);
         Integer offset = size * (page-1);
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questionList = questionMapper.selectByExampleWithRowbounds(questionExample,new RowBounds(offset,size));
+        questionQueryDto.setSize(size);
+        questionQueryDto.setPage(offset);
+        List<Question> questionList = questionExtMapper.selectBySearch(questionQueryDto);
         List<QuestionDto>questionDtoList = new ArrayList<>();
 
         for (Question question : questionList) {

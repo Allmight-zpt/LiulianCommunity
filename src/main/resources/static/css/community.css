@@ -84,11 +84,13 @@ body{
     margin-top: 30px;
 }
 .question-tag{
-    padding-top: 6px;
+    height: 22px;
+    padding: 2px 5px;
     margin-right: 10px;
-    font-size: 15px;
+    font-size: 12px;
     display: inline-block;
 }
+
 .question-related{
     line-height: 25px;
     font-size: 15px;
@@ -118,4 +120,15 @@ body{
     text-align: center;
     padding: 20px 25%;
     color: #666;
+}
+
+.label-info{
+    background-color: #99cfff;
+}
+.label-info:hover{
+    background-color: #339dff;
+}
+
+.hotTag{
+    padding-top: 0;
 }

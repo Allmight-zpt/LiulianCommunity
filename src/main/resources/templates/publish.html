@@ -56,7 +56,10 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" th:id="${selectCategory.categoryName}" th:each="selectCategory,selectCategoryStat: ${tags}" th:class="${selectCategoryStat.first ? 'active tab-pane' : 'tab-pane'}">
-                <span class="label label-info question-tag" th:each="selectTag: ${selectCategory.tags}"><span class="glyphicon glyphicon-tags"></span><span class="label label-info" onclick=selectTag(this) th:data-tag="${selectTag}" th:text="${selectTag}"></span></span>
+                <span onclick=selectTag(this) th:data-tag="${selectTag}" class="label label-info question-tag" th:each="selectTag: ${selectCategory.tags}">
+                  <span class="glyphicon glyphicon-tags"></span>
+                  <span th:text="${selectTag}"></span>
+                </span>
               </div>
             </div>
           </div>

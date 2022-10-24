@@ -11,12 +11,16 @@
                 <a class="navbar-brand" href="/">榴莲社区</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left" action="/" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索问题">
+                        <input type="text" class="form-control" name="search" placeholder="搜索问题">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+                <ul class="nav navbar-nav">
+                    <li><a href="https://allmight-zpt.github.io" target="_blank">站长博客</a></li>
+                    <li><a href="https://gitee.com/zhu-peiting" target="_blank">Gitee</a></li>
+                </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" th:if="${session.user != null}">

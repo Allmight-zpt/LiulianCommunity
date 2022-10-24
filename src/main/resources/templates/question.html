@@ -47,7 +47,7 @@
                 <div>
                     <span class="label label-info question-tag" th:each="tag:${questionDto.tag.split(',')}">
                         <span class="glyphicon glyphicon-tags"></span>
-                        <span class="label label-info" th:text="${tag}"></span>
+                        <span th:text="${tag}"></span>
                     </span>
                     <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 </div>
@@ -134,7 +134,7 @@
                 <div class="media">
                     <div class="media-left">
                         <a th:href="${questionDto.user.avatarUrl}">
-                            <img class="media-object img-rounded" th:src="${questionDto.user.avatarUrl}">
+                            <img class="media-object img-rounded" th:src="${questionDto.user.avatarUrl}" >
                         </a>
                     </div>
                     <div class="media-body">
