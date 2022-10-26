@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css" >
     <link rel="stylesheet" href="/css/community.css" >
     <link rel="stylesheet" href="/css/editormd.preview.min.css" >
+    <link rel="stylesheet" href="/css/editormd.min.css" >
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/community.js" type="application/javascript"></script>
@@ -75,7 +76,18 @@
                             <h5 class="media-heading">
                                 <span th:text="${comment.users.name}"></span>
                             </h5>
-                            <div th:text="${comment.content}"></div>
+<!--                            <div th:text="${comment.content}"></div>-->
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment-view" >
+                                <textarea style="display:none;" th:text="${comment.content}"></textarea>
+                            </div>
+                            <script type="text/javascript">
+                                $(function() {
+                                    var testView = editormd.markdownToHTML("comment-view", {
+                                    });
+                                });
+                            </script>
+
                             <div class="menu">
                                 <span class="icon-text"
                                       th:data-id="${comment.id}"
@@ -109,7 +121,7 @@
                 <h4>提交回复</h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 community-sp">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
-                    <div class="media">
+                    <div class="media comment-edit-media">
                         <div class="media-left">
                             <a th:href="${session.user.avatarUrl}">
                                 <img class="media-object img-rounded" th:src="${questionDto.user.avatarUrl}">
@@ -122,7 +134,26 @@
                         </div></x>
                     </div>
                     <input type="hidden" id="question_id" th:value="${questionDto.id}">
-                    <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
+<!--                    <textarea class="form-control comment" rows="6" id="comment_content"></textarea>-->
+                    <div class="form-group" id="comment-editor">
+                        <textarea style="display:none;" class="form-control" id="comment_content" name="comment_content" cols="3" rows="10" placeholder="回复问题..."></textarea>
+                    </div>
+                    <script type="text/javascript">
+                        $(function() {
+                            var editor = editormd("comment-editor", {
+                                width  : "100%",
+                                height : "500",
+                                path   : "/js/lib/",
+                                delay  : 0,
+                                watch  : false,
+                                placeholder  : "输入问题描述...",
+                                imageUpload    : true,
+                                imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                                imageUploadURL : "/file/upload",
+                                emoji  : true
+                            });
+                        });
+                    </script>
                     <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
                 </div>
             </div>

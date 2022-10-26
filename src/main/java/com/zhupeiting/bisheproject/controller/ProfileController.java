@@ -43,4 +43,9 @@ public class ProfileController {
         }
         return "profile";
     }
+
+    @GetMapping("/profile/myHome")
+    public String myHome(){
+        return "myHome";
+    }
 }

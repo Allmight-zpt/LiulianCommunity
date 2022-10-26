@@ -17,16 +17,32 @@
 <div class="container-fluid main">
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-      <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
+      <h3><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 发起</h3>
       <hr>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <br>
+        如果你希望他人花 1 分钟来解答你的问题，还请耐心花 10 分钟完善你的提问。
+        <br>
+        <br>
+        补充完整的错误描述，如：
+        <br>
+        软件版本；<br>
+        运行环境；<br>
+        场景/上下文；<br>
+        有用的信息（请使用代码块粘贴，以方便他人查看）；<br>
+        相关查询请求；<br>
+        错误日志；<br>
+        代码块；<br><br>
+      </div>
       <form action="/publish" method="post">
         <input type="hidden" name="id" th:value="${id}">
         <div class="form-group">
           <label for="title">问题标题（简单扼要）:</label>
           <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题...">
         </div>
+        <label for="description">问题补充（必填，请参照右侧提示）:</label>
         <div class="form-group" id="question-editor">
-          <label for="description">问题补充（必填，请参照右侧提示）:</label>
           <textarea style="display:none;" class="form-control" th:text="${description}" id="description" name="description" cols="3" rows="10" placeholder="问题补充..."></textarea>
         </div>
         <script type="text/javascript">
@@ -69,10 +85,21 @@
       </form>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <h3>问题发起指南</h3>
-      · <b>问题标题</b>：请用精简的语言描述您发布的问题，不超过25个字。<br><br>
-      · <b>问题补充</b>：详细补充您的问题内容，并确保问题描述清晰直观，最好提供一些相关资料。<br><br>
-      · <b>选择标签</b>：选择一个或多个合适的标签，使用“，”隔开，每个标签不超过10个字。<br><br>
+      <div class="publish-right">
+        <h4 class="publish-right-head">问题发起指南</h4>
+          <p class="publish-right-p"><b>• 问题标题:</b> 请用<b style="color:red">精简</b>的语言描述您发布的问题，不超过25字</p>
+          <p class="publish-right-p"><b>• 问题补充:</b> 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料：</p>
+
+          <li>服务器运行环境信息；</li>
+          <li>软件版本；</li>
+          <li>问题发生的上下文信息；</li>
+          <li>可以完整复现问题的代码；</li>
+          <li>补充完整的异常和错误信息；</li>
+          <li>注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；</li>
+          <p class="publish-right-p"></p>
+          <p class="publish-right-p"><b>• 选择标签:</b> 选择一个或者多个合适的标签，不超过<b style="color:red">10</b>个</p>
+          <p class="publish-right-p"><b>• 关于积分：</b> 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.</p>
+      </div>
     </div>
   </div>
 </div>

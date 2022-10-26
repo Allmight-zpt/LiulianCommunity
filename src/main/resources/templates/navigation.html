@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="nav">
+<div class="my-nav" th:fragment="nav">
 <!--    上方导航-->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -22,17 +22,36 @@
                 </form>
                 <ul class="nav navbar-nav">
                     <li>
+                        <a href="/hotTag">
+                            <span class="glyphicon glyphicon-list"></span>发现
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/hotTag">
+                            <span class="glyphicon glyphicon-globe"></span>活动
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/hotTag">
+                            <span class="glyphicon glyphicon-tags"></span>话题
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/hotTag">
+                            <span class="glyphicon glyphicon-cloud-download"></span>下载
+                        </a>
+                    </li>
+                    <li>
                         <a href="https://allmight-zpt.github.io" target="_blank">
                             <span class="glyphicon glyphicon-leaf"></span>站长博客
                         </a>
                     </li>
                     <li>
                         <a href="https://gitee.com/zhu-peiting" target="_blank">
-                            <span class="glyphicon glyphicon-folder-open"></span>Gitee
+                            <span class="glyphicon glyphicon-folder-open"></span>站长Gitee
                         </a>
                     </li>
                 </ul>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" th:if="${session.user != null}">
                         <a href="/publish">
@@ -52,13 +71,50 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
+                                <a href="/profile/myHome">
+                                    <span class="glyphicon glyphicon-home"></span>个人中心
+                                </a>
+                            </li>
+                            <li>
                                 <a href="/profile/questions">
                                     <span class="glyphicon glyphicon-question-sign"></span>我的问题
                                 </a>
                             </li>
                             <li>
+                                <a href="/profile/questions">
+                                    <span class="glyphicon glyphicon-heart"></span>我的粉丝
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile/questions">
+                                    <span class="glyphicon glyphicon-star"></span>我关注的人
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile/questions">
+                                    <span class="glyphicon glyphicon-check"></span>我收藏的问题
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile/questions">
+                                    <span class="glyphicon glyphicon-tags"></span>我关注的话题
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile/questions">
+                                    <span class="glyphicon glyphicon-globe"></span>我关注的活动
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
                                 <a href="/logout">
                                     <span class="glyphicon glyphicon-log-out"></span>推出登录
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="/logout">
+                                    <span class="glyphicon glyphicon-cog"></span>设置
                                 </a>
                             </li>
                         </ul>

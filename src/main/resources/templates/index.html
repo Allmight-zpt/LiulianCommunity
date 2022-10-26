@@ -53,7 +53,7 @@
           <h4 class="media-heading">
 <!--            <a th:text="${questionDto.title}" th:href="@{'/question/'+${questionDto.id}}"></a>-->
             <a th:href="@{'/question/'+${questionDto.id}}">
-              <b><span style="color: #d9534f" th:if="${questionDto.commentCount>1}" th:text="'[热门]'"></span>
+              <b><span style="color: #d9534f" th:if="${questionDto.commentCount>0}" th:text="'[热门]'"></span>
               <span th:text="${questionDto.title}"></span></b>
             </a>
           </h4>
@@ -62,7 +62,7 @@
           <span class="text-desc"><span th:text="${questionDto.likeCount}"></span> 个点赞 • <span th:text="${questionDto.commentCount}"></span> 个回复 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${#dates.format(questionDto.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
         </div>
       </div>
-      <nav aria-label="Page navigation" class="pagination-loc">
+      <nav aria-label="Page navigation" class="pagination-loc pull-right">
         <ul class="pagination">
           <li th:if="${pageDto.showFirstPage}">
             <a th:href="@{/(page=1,search=${search},tag=${tag})}" aria-label="Previous">
@@ -91,9 +91,9 @@
       </nav>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <!--推荐活动-->
+      <!--活动推荐-->
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h4>推荐内容</h4>
+        <h4>活动推荐</h4>
 <!--        <img class="img-thumbnail question-wechat" src="/images/activaty.png">-->
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
@@ -135,7 +135,7 @@
       <!--热门话题-->
       <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <a href="/tag" class="pull-right hotTag-more">更多</a>
+        <a href="hotTag" class="pull-right hotTag-more">更多></a>
         <h4>热门话题</h4>
         <div class="media" th:each="t:${tags}">
           <div class="media-left media-middle">

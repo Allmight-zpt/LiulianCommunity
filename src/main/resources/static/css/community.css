@@ -4,7 +4,7 @@ body{
 .navbar{
     margin-bottom: 0;
 }
-.alert{
+.my-nav .alert{
     color: white;
     background-color: #494a4b;
     height: 42px;
@@ -164,10 +164,10 @@ body{
     background-color: #494a4b;
     color: white;
 }
-.glyphicon-leaf, .glyphicon-folder-open, .glyphicon-bullhorn, .glyphicon-question-sign, .glyphicon-search, .glyphicon-paperclip, .glyphicon-log-out, .glyphicon-log-in, .glyphicon-user{
-    margin-right: 5px   ;
-}
 
+.nav .glyphicon{
+    margin-right: 5px;
+}
 
 /**************************************悬浮菜单***************************************/
 * {
@@ -281,4 +281,72 @@ body{
 .hotTag-more{
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.publish-right{
+    margin-top: 45px;
+    margin-bottom: 30px;
+}
+.publish-right .publish-right-head{
+    margin-bottom: 40px;
+}
+
+.publish-right .publish-right-p{
+    margin-bottom: 30px;
+}
+.publish-right li,p{
+    color: #999;
+}
+
+.comment-edit-media{
+    margin-bottom: 10px;
+}
+.myHome .media-left{
+    height: 150px;
+}
+.myHome .media-object{
+    margin: 20px;
+    height: 110px;
+    width: 110px;
+    border-radius: 5px;
+}
+.myHome .media-heading{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.myHome .glyphicon{
+    margin-right: 5px;
+}
+.myHome .desc{
+    margin-right: 10px;
+}
+.myHome .gray{
+    color: #999;
+}
+.myHome .gray:hover {
+    color: #499ef3;;
+}
+.myHome a{
+    text-decoration: none;
+}
+.myHome .media-right-top{
+    margin-top: 20px;
+}
+.myHome .head-right-top-text{
+    margin-top: 8px;
+    margin-right: 20px;
+}
+.myHome .fourIcon{
+    margin-left: 20px;
+}
+.myHome .icon-with-text{
+    margin-right: 15px;
+}
+.myHome .goodTag{
+    margin-top: 60px;
+    margin-left: 20px;
+}
+.myHome .goodTagDesc{
+    margin-bottom: 20px;
+    width: 280px;
+    float: left;
 }

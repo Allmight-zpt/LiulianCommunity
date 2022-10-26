@@ -137,3 +137,4 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 基于spring 定时器的热门话题功能
 - 单独的标签页面
 - 使用免费api丰富页面内容 ：https://www.mxnzp.com/
+- 搞一个后台系统 1. 用户登录可以看自己的一些统计数据 2. 管理员登录可以进行活动和文件等的上传以及对用户信息进行一些操作和查看
