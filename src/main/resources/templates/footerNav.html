@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="footNav" class="footerNav">
+  <div class="side-bar">
+    <a class="icon icon-qq" title="QQ">QQ<div class="hovertree-chat-tips"><i></i></span><img src="/images/qq.png"/></div></a>
+    <a class="icon icon-chat" title="微信">微信<div class="hovertree-chat-tips"><i></i><img src="/images/weixinMin.png"/></div></a>
+    <a class="icon icon-toTop" title="回到顶部" onclick="function toTop() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
+    toTop()">回到顶部</a>
+  </div>
+</div>
+</body>
+</html>

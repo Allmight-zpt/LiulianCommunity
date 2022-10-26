@@ -1,9 +1,21 @@
 body{
-    background-color: #efefef;
+    background-color: #e0e0e0;
+}
+.navbar{
+    margin-bottom: 0;
+}
+.alert{
+    color: white;
+    background-color: #494a4b;
+    height: 42px;
+    text-align: center;
+}
+.oneWord{
+    margin-top: -5px;
 }
 .main{
     background-color: white;
-    margin: 80px;
+    margin: 40px 80px 30px;
 }
 .btn-publish{
     float: right;
@@ -131,4 +143,142 @@ body{
 
 .hotTag{
     padding-top: 0;
+}
+.btn-group{
+    left: 80px;
+    top: 12px;
+}
+.btn-group .btn{
+    background-color: #494a4b40;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+.btn-group .btn:hover,.btn-group .active{
+    background-color: #494a4b;
+    color: white;
+}
+.navbar-form .btn{
+    background-color: #494a4b40;
+}
+.navbar-form .btn:hover{
+    background-color: #494a4b;
+    color: white;
+}
+.glyphicon-leaf, .glyphicon-folder-open, .glyphicon-bullhorn, .glyphicon-question-sign, .glyphicon-search, .glyphicon-paperclip, .glyphicon-log-out, .glyphicon-log-in, .glyphicon-user{
+    margin-right: 5px   ;
+}
+
+
+/**************************************悬浮菜单***************************************/
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+.side-bar a,.hovertree-chat-tips i  {
+    background-image: url(../images/sideNavBackground.png);
+    background-repeat: no-repeat;
+}
+
+.side-bar {
+    width: 66px;
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    font-size: 0;
+    line-height: 0;
+    z-index: 100;
+}
+.side-bar a {
+    width: 66px;
+    height: 66px;
+    display: inline-block;
+    background-color: #dddddd;
+    margin-bottom: 2px;
+}
+.side-bar a:hover {
+    background-color: #494a4b;
+}
+.side-bar .icon-qq {
+    background-position: 0 -62px;
+}
+.side-bar .icon-qq:hover .hovertree-chat-tips {
+    display: block;
+}
+.side-bar .icon-chat {
+    background-position: 0 -130px;
+    position: relative;
+}
+.side-bar .icon-chat:hover .hovertree-chat-tips {
+    display: block;
+}
+
+.side-bar .icon-toTop{
+    background: url(../images/toTop.png) no-repeat 13px,0;
+}
+.hovertree-chat-tips {
+    padding: 20px;
+    border: 1px solid #d1d2d6;
+    position: absolute;
+    right: 78px;
+    top: -55px;
+    background-color: #ffffff;
+    display: none;
+}
+.hovertree-chat-tips i {
+    width: 9px;
+    height: 16px;
+    display: inline-block;
+    position: absolute;
+    right: -9px;
+    top: 80px;
+    background-position:-88px -350px;
+}
+.hovertree-chat-tips img {
+    width: 138px;
+    height: 138px;
+}
+
+.side-bar .icon{
+    background-color: #494a4b40;
+}
+
+.support-contribute{
+    margin-bottom: 80px;
+}
+.support-contribute .btn{
+    float:left;
+    width: 45%;
+    text-align: center;
+    margin-right: 10px;
+}
+.support{
+    margin-top: 20px;
+    margin-left: 230px;
+    margin-right: 230px;
+}
+.support .support-title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.support .support-content{
+    margin-left: 80px;
+    margin-right: 80px;
+}
+.support .support-hr{
+    margin: 40px 80px;
+    border: 1px solid;
+    background-color: black;
+}
+.support .support-weixinPay{
+    margin-left: 80px;
+    margin-right: 40px;
+}
+.support .support-zhifubaoPay{
+    margin-right: 80px;
+    margin-left: 40px;
+}
+.hotTag-more{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

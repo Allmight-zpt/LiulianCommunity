@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="nav">
+<!--    上方导航-->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -15,32 +16,67 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="search" placeholder="搜索问题">
                     </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
+                    <button type="submit" class="btn">
+                        <span class="glyphicon glyphicon-search"></span>搜索
+                    </button>
                 </form>
                 <ul class="nav navbar-nav">
-                    <li><a href="https://allmight-zpt.github.io" target="_blank">站长博客</a></li>
-                    <li><a href="https://gitee.com/zhu-peiting" target="_blank">Gitee</a></li>
+                    <li>
+                        <a href="https://allmight-zpt.github.io" target="_blank">
+                            <span class="glyphicon glyphicon-leaf"></span>站长博客
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://gitee.com/zhu-peiting" target="_blank">
+                            <span class="glyphicon glyphicon-folder-open"></span>Gitee
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" th:if="${session.user != null}">
-                        <a href="/publish">提问</a>
+                        <a href="/publish">
+                            <span class="glyphicon glyphicon-question-sign"></span>提问
+                        </a>
                     </li>
-                    <li th:if="${session.user != null}"><a href="/profile/replies">通知<span class="badge" th:text="${session.unreadCount}"></span></a></li>
+                    <li th:if="${session.user != null}">
+                        <a href="/profile/replies">
+                            <span class="glyphicon glyphicon-bullhorn"></span>通知
+                            <span class="badge" th:text="${session.unreadCount}"></span>
+                        </a>
+                    </li>
                     <li class="dropdown" th:if="${session.user != null}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
                             <span th:text="${session.user.getName()}"></span>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/profile/questions">我的问题</a></li>
-                            <li><a href="/logout">推出登录</a></li>
+                            <li>
+                                <a href="/profile/questions">
+                                    <span class="glyphicon glyphicon-question-sign"></span>我的问题
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout">
+                                    <span class="glyphicon glyphicon-log-out"></span>推出登录
+                                </a>
+                            </li>
                         </ul>
                     </li>
-                    <li th:if="${session.user == null}"><a th:href="${session.authorizeUriWithParams}">登录</a></li>
+                    <li th:if="${session.user == null}">
+                        <a th:href="${session.authorizeUriWithParams}">
+                            <span class="glyphicon glyphicon-log-in"></span>登录
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+<!--    每日一句-->
+    <div class="alert fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="oneWord">Holy guacamole! Best check yourself, you're not looking too good.</div>
+    </div>
 </div>
 </body>
 </html>

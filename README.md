@@ -18,6 +18,9 @@
 * 问题编辑功能实现markdown支持
 * 问题编辑提高图片上传功能，借助bridge文件服务器实现
 * 网站生成日志功能
+* 搜索功能
+* 热门话题功能
+* 流量变现功能
 
 # 资料
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
@@ -133,3 +136,4 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 基于ES的搜索功能
 - 基于spring 定时器的热门话题功能
 - 单独的标签页面
+- 使用免费api丰富页面内容 ：https://www.mxnzp.com/

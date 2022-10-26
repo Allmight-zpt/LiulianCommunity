@@ -34,4 +34,9 @@ public class IndexController {
         model.addAttribute("tags",tags);
         return "index";
     }
+
+    @GetMapping("/support")
+    public String support(){
+        return "support";
+    }
 }
