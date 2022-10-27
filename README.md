@@ -23,12 +23,13 @@
 * 流量变现功能
 
 # 资料
+* [elastic 社区（开发借鉴）](https://elasticsearch.cn/explore/)
+* [Jack Cui 个人博客（开发借鉴）](https://cuijiahua.com/)
 * [maven 仓库用于搜索各类依赖](https://mvnrepository.com/)
 * [spring 各类组件使用指南](https://spring.io/guides/)
 * [spring 基于thymeleaf实现第一个网页](https://spring.io/guides/gs/serving-web-content/)
 * [Bootstrap 前端搭建框架](https://www.bootcss.com/)
 * [Github OAuth登录授权使用指南](https://docs.github.com/cn/developers/apps/building-oauth-apps/creating-an-oauth-app/)
-* [elastic 社区借鉴](https://elasticsearch.cn/explore/)
 * [OkHttp 网络请求框架](https://square.github.io/okhttp/)
 * [H2 数据库](http://www.h2database.com/html/main.html/)
 * [spring 帮助文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support)

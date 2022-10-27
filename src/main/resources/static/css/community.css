@@ -133,7 +133,13 @@ body{
     padding: 20px 25%;
     color: #666;
 }
-
+.footer p{
+    color: #666666;
+    margin-top: 10px;
+}
+.footer span{
+    color: #2F889A;
+}
 .label-info{
     background-color: #99cfff;
 }
