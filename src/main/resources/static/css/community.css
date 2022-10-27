@@ -8,6 +8,15 @@ body{
     padding: 0;
     margin-top: -10px;
 }
+.banner-text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 40px;
+    color: #fff;
+    margin-top: -29px;
+    margin-left: -300px;
+}
 .navbar{
     margin-bottom: 0;
 }
