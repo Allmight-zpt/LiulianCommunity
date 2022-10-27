@@ -1,5 +1,12 @@
 body{
-    background-color: #e0e0e0;
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.banner{
+    width: 100%;
+    padding: 0;
+    margin-top: -10px;
 }
 .navbar{
     margin-bottom: 0;
@@ -14,8 +21,12 @@ body{
     margin-top: -5px;
 }
 .main{
-    background-color: white;
+    background-color: #44444420;
     margin: 40px 80px 30px;
+}
+.index-hr{
+    margin-top: 10px;
+    margin-bottom: 1px;
 }
 .btn-publish{
     float: right;

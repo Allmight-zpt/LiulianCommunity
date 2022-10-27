@@ -22,6 +22,9 @@
 </script>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
+<div class="banner col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <img class="banner" src="/images/banner.png">
+</div>
 <div class="btn-group">
   <button class="btn active" >全部</button>
   <button class="btn">后端</button>
@@ -62,6 +65,7 @@
           <br>
           <span class="text-desc"><span th:text="${questionDto.likeCount}"></span> 个点赞 • <span th:text="${questionDto.commentCount}"></span> 个回复 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${#dates.format(questionDto.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
         </div>
+        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 index-hr">
       </div>
       <nav aria-label="Page navigation" class="pagination-loc pull-right">
         <ul class="pagination">
