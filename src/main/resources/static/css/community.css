@@ -30,7 +30,7 @@ body{
     margin-top: -5px;
 }
 .main{
-    background-color: #11ffff20;
+    background-color: #4B7EC320;
     margin: 40px 80px 30px;
 }
 .index-hr{
@@ -175,12 +175,14 @@ body{
     top: 12px;
 }
 .btn-group .btn{
-    background-color: #494a4b40;
+    /*background-color: #494a4b40;*/
+    background-color: #99cfff88;
     margin-right: 10px;
     border-radius: 4px;
 }
 .btn-group .btn:hover,.btn-group .active{
-    background-color: #494a4b;
+    /*background-color: #494a4b;*/
+    background-color: #337ab7;
     color: white;
 }
 .navbar-form .btn{
@@ -319,7 +321,7 @@ body{
 .publish-right .publish-right-p{
     margin-bottom: 30px;
 }
-.publish-right li,p{
+.publish-right li,.publish-right p{
     color: #999;
 }
 
@@ -375,4 +377,31 @@ body{
     margin-bottom: 20px;
     width: 280px;
     float: left;
+}
+.carousel-inner img{
+    width: 100%;
+}
+.activity-slide{
+    margin: 20px 10px;
+    height: 350px;
+}
+.activity-slide .carousel-inner{
+    height: 100%;
+    border-radius: 10px;
+}
+.activity-slide .item{
+    height: 100%;
+}
+.activity-slide .carousel-inner .item img{
+    height: 100%;
+}
+.activity-slide .carousel-control{
+    border-radius: 10px;
+}
+.activity-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.timeline-alert{
+    margin-bottom: 0;
 }

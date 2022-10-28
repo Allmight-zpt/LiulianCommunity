@@ -6,15 +6,251 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css" >
     <link rel="stylesheet" href="/css/community.css" >
+    <link rel="stylesheet" href="/css/timeline.css">
+    <link rel="stylesheet" href="/css/carousel.css">
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/siteTime.js" type="application/javascript"></script>
+    <script src="/js/carousel.js" type="application/javascript"></script>
+    <script src="/js/sakura.js" type="application/javascript"></script>
+
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
-<div class="jumbotron">
+<!--        轮播图-->
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <h3><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 活动</h3>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">全部</a></li>
+                <li role="presentation"><a href="#">线上活动</a></li>
+                <li role="presentation"><a href="#">线下活动</a></li>
+                <li role="presentation"><a href="#">文章分享</a></li>
+                <li role="presentation"><a href="#" style="color: #d9534f">消灭冷门活动</a></li>
+            </ul>
+            <div class="carousel">
+<!--                轮播图导航-->
+                <div class="carousel__nav">
+                    <span id="moveLeft" class="carousel__arrow">
+                        <svg class="carousel__icon" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+                        </svg>
+                    </span>
+                    <span id="moveRight" class="carousel__arrow" >
+                        <svg class="carousel__icon"  width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+                        </svg>
+                    </span>
+                </div>
+<!--                轮播图各个item-->
+                <div class="carousel-item carousel-item--1">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h2 class="carousel-item__subtitle">The grand moment </h2>
+                            <h1 class="carousel-item__title">Le tour</h1>
+                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            <a href="#" class="carousel-item__btn">Explore the tour</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item--2">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h2 class="carousel-item__subtitle">The big window </h2>
+                            <h1 class="carousel-item__title">Minimal window</h1>
+                            <p class="carousel-item__description">Clear Glass Window With Brown and White Wooden Frame iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                            <a href="#" class="carousel-item__btn">Read the article</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item--3">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h2 class="carousel-item__subtitle">Tropical palms </h2>
+                            <h1 class="carousel-item__title">Palms</h1>
+                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            <a href="#" class="carousel-item__btn">Explore the palms</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item--4">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h2 class="carousel-item__subtitle">Beach </h2>
+                            <h1 class="carousel-item__title">The beach </h1>
+                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            <a href="#" class="carousel-item__btn">Explore the beach</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item--5">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h2 class="carousel-item__subtitle">The white building </h2>
+                            <h1 class="carousel-item__title">White building</h1>
+                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            <a href="#" class="carousel-item__btn">Read the article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    活动预告-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            <div id="timeline-content">
+                <h1>活动预告</h1>
+                <ul class="timeline">
+                    <li class="event" data-date="2000">
+                        <h4>Dinosaurs Roamed the Earth</h4>
+                        <p>RAWWWWWWRRR 🐢🦂</p>
+                    </li>
+                    <li class="event" data-date="2021">
+                        <h4>Squareflair Today</h4>
+                        <p>"We design and build from scratch!" 📣<p/> <p>When we say <em><strong>100% custom</strong></em> we mean it— and we build all sites on the Squarespace Developer platform.<p/>
+                        <p>Did you know that all of our pixels are hand-forged from the rarest of subpixels grown and harvested in the <em>Nerd Forest</em>? <br>🤜💥🤛</p>
+                        <p><strong>Our success can be measured by lives and brands enhanced by 9+ years of 100% Squarespace-focused service!</strong></p>
+                    </li>
+                    <li class="event" data-date="2021">
+                        <h4>Squareflair Today</h4>
+                        <p>"We design and build from scratch!" 📣<p/> <p>When we say <em><strong>100% custom</strong></em> we mean it— and we build all sites on the Squarespace Developer platform.<p/>
+                        <p>Did you know that all of our pixels are hand-forged from the rarest of subpixels grown and harvested in the <em>Nerd Forest</em>? <br>🤜💥🤛</p>
+                        <p><strong>Our success can be measured by lives and brands enhanced by 9+ years of 100% Squarespace-focused service!</strong></p>
+                    </li>
+                    <li class="event" data-date="2021">
+                        <h4>Squareflair Today</h4>
+                        <p>"We design and build from scratch!" 📣<p/> <p>When we say <em><strong>100% custom</strong></em> we mean it— and we build all sites on the Squarespace Developer platform.<p/>
+                        <p>Did you know that all of our pixels are hand-forged from the rarest of subpixels grown and harvested in the <em>Nerd Forest</em>? <br>🤜💥🤛</p>
+                        <p><strong>Our success can be measured by lives and brands enhanced by 9+ years of 100% Squarespace-focused service!</strong></p>
+                        <br>
+                        <div class="alert alert-warning alert-dismissible timeline-alert" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            每周日晚上20点本站将在此公告栏预告未来一周将举办的活动，敬请期待哦~
+                            <br>
+                            <br>
+                            活动形式包括线上活动、线下活动、文章分享三种形式<br>
+                            ① 线上活动通过邀请包括但不限于本站的活跃用户，通过直播方式进行知识分享。<br>
+                            ② 线下活动通过举办线下宣讲会的形式进行。<br>
+                            ③ 文章分享通过本站用户投稿形式挑选出若干篇优质文章。<br>
+                            备注：<br>
+                            • 投稿通道长期开发，欢迎投稿至邮箱：cszhupeiting@163<br>
+                            • 投稿内容被选为优质文章的用户将获得<b style="color:red">500</b>积分，并有<b style="color:red">10-100</b>元现金奖励<br>
+                            • 优质文章将在“发现”模块<b style="color:red">置顶</b>，文章热度决定置顶时长<br>
+                            • 优质文章将进入本站收藏夹<b style="color:red">永久收藏</b><br>
+                            • 想要进行线上直播分享知识的用户可联系站长或发送邮件至邮箱：cszhupeiting@163<br>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+    </div>
 </div>
+
+<!--        下方具体活动列表-->
+<!--        待修改：1. 改成循环 2. 考虑添加分页功能-->
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 activity-group">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="/images/activaty.png">
+                    <div class="caption">
+                        <h4>中国开发者大会</h4>
+                        <p>时间：2022-11-30</p>
+                        <p>地点：深圳</p>
+                        <p><a href="#" class="btn btn-primary" role="button">关注</a> <a href="#" class="btn btn-default" role="button">详情</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div th:insert="~{footer :: foot}"></div>
 <div th:insert="~{footerNav :: footNav}"></div>
 </body>

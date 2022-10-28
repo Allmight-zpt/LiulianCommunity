@@ -9,11 +9,18 @@
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/siteTime.js" type="application/javascript"></script>
+    <script src="/js/sakura.js" type="application/javascript"></script>
+
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
-<div class="jumbotron">
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 话题</h3>
 
+        </div>
+    </div>
 </div>
 <div th:insert="~{footer :: foot}"></div>
 <div th:insert="~{footerNav :: footNav}"></div>
