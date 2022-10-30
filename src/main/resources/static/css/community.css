@@ -159,6 +159,8 @@ body{
     padding-top: 40px;
     padding-bottom: 35px;
     background: #23282d;
+    position: absolute;
+    bottom: 0;
 }
 .footer .footer-text{
     color: #666666;
