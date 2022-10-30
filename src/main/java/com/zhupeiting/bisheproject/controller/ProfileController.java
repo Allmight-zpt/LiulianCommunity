@@ -40,6 +40,31 @@ public class ProfileController {
             model.addAttribute("sectionName","最新回复");
             PageDto pageDto = notificationService.list(users.getId(),page,size);
             model.addAttribute("pageDto",pageDto);
+        } else if("fans".equals(action)){
+            model.addAttribute("section","fans");
+            model.addAttribute("sectionName","我的粉丝");
+            PageDto pageDto = notificationService.list(users.getId(),page,size);
+            model.addAttribute("pageDto",pageDto);
+        } else if("idols".equals(action)){
+            model.addAttribute("section","idols");
+            model.addAttribute("sectionName","我关注的人");
+            PageDto pageDto = notificationService.list(users.getId(),page,size);
+            model.addAttribute("pageDto",pageDto);
+        } else if("collectQuestions".equals(action)){
+            model.addAttribute("section","collectQuestions");
+            model.addAttribute("sectionName","我收藏的问题");
+            PageDto pageDto = notificationService.list(users.getId(),page,size);
+            model.addAttribute("pageDto",pageDto);
+        } else if("followTags".equals(action)){
+            model.addAttribute("section","followTags");
+            model.addAttribute("sectionName","我关注的话题");
+            PageDto pageDto = notificationService.list(users.getId(),page,size);
+            model.addAttribute("pageDto",pageDto);
+        } else if("followActivities".equals(action)){
+            model.addAttribute("section","followActivities");
+            model.addAttribute("sectionName","我关注的活动");
+            PageDto pageDto = notificationService.list(users.getId(),page,size);
+            model.addAttribute("pageDto",pageDto);
         }
         return "profile";
     }

@@ -22,19 +22,19 @@ function siteTime(){
     var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds)
     html = ""
     if(diffYears>0){
-        html += "<font style='color:#c40000'>" + diffYears +"</font>" + " 年 "
+        html += "<font style='color:#d9534f'>" + diffYears +"</font>" + " 年 "
     }
     if(diffDays>0){
-        html += "<font style='color:#c40000'>" + diffDays +"</font>" + " 天 "
+        html += "<font style='color:#d9534f'>" + diffDays +"</font>" + " 天 "
     }
     if(diffHours>0){
-        html += "<font style='color:#c40000'>" + diffHours +"</font>" + " 小时 "
+        html += "<font style='color:#d9534f'>" + diffHours +"</font>" + " 小时 "
     }
     if(diffMinutes>0){
-        html += "<font style='color:#c40000'>" + diffMinutes +"</font>" + " 分钟 "
+        html += "<font style='color:#d9534f'>" + diffMinutes +"</font>" + " 分钟 "
     }
     if(diffSeconds>0){
-        html += "<font style='color:#c40000'>" + diffSeconds +"</font>" + " 秒 "
+        html += "<font style='color:#d9534f'>" + diffSeconds +"</font>" + " 秒 "
     }
     document.getElementById("sitetime").innerHTML=html
 }

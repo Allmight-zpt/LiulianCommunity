@@ -43,6 +43,10 @@
 * [comment.js 官网，用于时间戳的转换](http://momentjs.cn/)
 * [Editor.md 可嵌入markdown编辑器](https://pandao.github.io/editor.md/)
 * [codepen 前端UI设计网站](https://codepen.io/trending)
+* [APlayer 音乐播放器](https://aplayer.js.org/#/)
+* [MetingJS 封装APlayer开箱即用快速实现背景音乐](https://github.com/metowolf/MetingJS)
+* [MetingJS 配合 APlayer使用实现背景音乐教程](https://www.cnblogs.com/fby698/p/12663089.html)
+
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
 * [Xmind 思维导图绘制软件](https://xmind.cn/)
@@ -137,5 +141,11 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 基于ES的搜索功能
 - 基于spring 定时器的热门话题功能
 - 单独的标签页面
-- 使用免费api丰富页面内容 ：https://www.mxnzp.com/
+- 使用免费api丰富页面内容 ：https://www.mxnzp.copp'rm/
 - 搞一个后台系统 1. 用户登录可以看自己的一些统计数据 2. 管理员登录可以进行活动和文件等的上传以及对用户信息进行一些操作和查看
+- 深度学习模块：1. 垃圾邮件分类模型 2. 黄色图片识别 3. 敏感词屏蔽（为了防止漏检还应添加举报功能）
+- 基于netty进行实时通讯如站内邮件功能
+- 修改<hr> background 为深蓝色
+
+## ElasticSearch
+端口9200

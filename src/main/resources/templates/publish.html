@@ -29,13 +29,13 @@
         <br>
         补充完整的错误描述，如：
         <br>
-        软件版本；<br>
-        运行环境；<br>
-        场景/上下文；<br>
-        有用的信息（请使用代码块粘贴，以方便他人查看）；<br>
-        相关查询请求；<br>
-        错误日志；<br>
-        代码块；<br>
+        ① 软件版本；<br>
+        ② 运行环境；<br>
+        ③ 场景/上下文；<br>
+        ④ 有用的信息（请使用代码块粘贴，以方便他人查看）；<br>
+        ⑤ 相关查询请求；<br>
+        ⑥ 错误日志；<br>
+        ⑦ 代码块；<br>
       </div>
       <form action="/publish" method="post">
         <input type="hidden" name="id" th:value="${id}">
@@ -108,6 +108,5 @@
   </div>
 </div>
 <div th:insert="~{footer :: foot}"></div>
-<div th:insert="~{footerNav :: footNav}"></div>
 </body>
 </html>
