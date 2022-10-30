@@ -152,7 +152,11 @@ body{
     margin-top: 15px;
 }
 .badge{
+    margin-left: 5px;
     background-color: #d9534f;
+}
+.badge-gray{
+    background-color: #ccc;
 }
 .footer{
     text-align: center;
@@ -335,16 +339,16 @@ body{
 .comment-edit-media{
     margin-bottom: 10px;
 }
-.myHome .media-left{
+.myHome .my-media-left{
     height: 150px;
 }
-.myHome .media-object{
+.myHome .my-media-object{
     margin: 20px;
     height: 110px;
     width: 110px;
     border-radius: 5px;
 }
-.myHome .media-heading{
+.myHome .my-media-heading{
     margin-top: 30px;
     margin-bottom: 20px;
 }
@@ -366,6 +370,9 @@ body{
 .myHome .media-right-top{
     margin-top: 20px;
 }
+.myHome .media-right-top a{
+    cursor: pointer;
+}
 .myHome .head-right-top-text{
     margin-top: 8px;
     margin-right: 20px;
@@ -384,6 +391,9 @@ body{
     margin-bottom: 20px;
     width: 280px;
     float: left;
+}
+.myHome .second-nav-tab{
+    margin-left: 24%;
 }
 .carousel-inner img{
     width: 100%;
@@ -420,6 +430,20 @@ body{
 .follow_tags .label{
     margin-bottom: 10px;
 }
+.my-idols img,.my-fans img{
+    width: 35px;
+    border-radius: 5px;
+}
+textarea{
+    resize: none;
+}
+
+
+
+
+
+
+
 .my-hr{
     background: #99cfff70;
     padding-left: 0;

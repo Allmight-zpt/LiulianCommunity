@@ -2,25 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="foot" class="footer">
-<!--    1. 播放背景音乐-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-    <meting-js
-            server="netease"
-            type="artist"
-            id="5771"
-            fixed="true"
-            autoplay="true"
-            loop="all"
-            order="random"
-            preload="auto"
-            list-folded="ture"
-            list-max-height="450px"
-            lrc-type="1">
-    </meting-js>
-
-<!--    2. 页脚文字-->
+<!--    1. 页脚文字-->
     <div class="footer-text">
         Copyright © 2022· 服务器支持: <a href="http://localhost:8081" target="_blank">Bridge文件服务器</a> · 网站程序: Spring Boot · 粤ICP备00000000号<br>
         (●'◡'●)ﾉ 网站已稳定运行 <span id="sitetime"></span><br>
@@ -28,7 +10,7 @@
         总访问量: 128428 | 总用户量: 5972<br>
     </div>
 
-<!--    3. 侧边悬浮栏-->
+<!--    2. 侧边悬浮栏-->
     <div class="side-bar">
         <a class="icon icon-qq" title="QQ">QQ<div class="hovertree-chat-tips"><i></i></span><img src="/images/qq.png"/></div></a>
         <a class="icon icon-chat" title="微信">微信<div class="hovertree-chat-tips"><i></i><img src="/images/weixinMin.png"/></div></a>
@@ -37,6 +19,24 @@
     }
     toTop()">回到顶部</a>
     </div>
+
+    <!--        1. 播放背景音乐-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>-->
+<!--    <meting-js-->
+<!--            server="netease"-->
+<!--            type="artist"-->
+<!--            id="5771"-->
+<!--            fixed="true"-->
+<!--            loop="all"-->
+<!--            order="random"-->
+<!--            preload="auto"-->
+<!--            list-folded="ture"-->
+<!--            list-max-height="100px"-->
+<!--            lrc-type="1">-->
+<!--    </meting-js>-->
+
 </div>
 </body>
 </html>

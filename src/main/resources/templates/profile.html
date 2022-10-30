@@ -19,17 +19,18 @@
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <h3>
-                <span class="glyphicon glyphicon-bullhorn" th:if="${sectionName == 'replies'}"></span>
-                <span class="glyphicon glyphicon-question-sign" th:if="${sectionName == 'questions'}"></span>
-                <span class="glyphicon glyphicon-heart" th:if="${sectionName == 'fans'}"></span>
-                <span class="glyphicon glyphicon-star" th:if="${sectionName == 'idol'}"></span>
-                <span class="glyphicon glyphicon-check" th:if="${sectionName == 'collectQuestions'}"></span>
-                <span class="glyphicon glyphicon-tags" th:if="${sectionName == 'followTags'}"></span>
-                <span class="glyphicon glyphicon-globe" th:if="${sectionName == 'followActivities'}"></span>
+                <span class="glyphicon glyphicon-comment" th:if="${section == 'replies'}"></span>
+                <span class="glyphicon glyphicon-question-sign" th:if="${section == 'questions'}"></span>
+                <span class="glyphicon glyphicon-envelope" th:if="${section == 'mails'}"></span>
+                <span class="glyphicon glyphicon-heart" th:if="${section == 'fans'}"></span>
+                <span class="glyphicon glyphicon-star" th:if="${section == 'idols'}"></span>
+                <span class="glyphicon glyphicon-check" th:if="${section == 'collectQuestions'}"></span>
+                <span class="glyphicon glyphicon-tags" th:if="${section == 'followTags'}"></span>
+                <span class="glyphicon glyphicon-globe" th:if="${section == 'followActivities'}"></span>
                 <span th:text="${sectionName}"></span></h3>
-            <hr>
 <!--            1. 我的提问模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'questions'}">
+                <hr>
                 <div class="media" th:each="questionDto : ${pageDto.data}">
                     <div class="media-left">
                         <a th:href="${questionDto.user.avatarUrl}">
@@ -57,8 +58,27 @@
                     </div>
                 </div>
             </div>
-<!--            2. 我的回复模块-->
+<!--            2. 我的邮箱模块-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'mails'}">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#">已发送</a></li>
+                    <li role="presentation"><a href="#">收件箱</a></li>
+                </ul>
+                <div class="media" th:each="notification : ${pageDto.data}">
+                    <div class="media-body">
+                        <p class="media-heading" >
+                            <span th:text="${notification.notifierName +' '+ notification.typeName +' '}"></span>
+                            <a th:text="${notification.outerTitle}"
+                               th:href="@{'/notification/'+ ${notification.id}}">
+                            </a>
+                            <span class="label label-danger" th:if="${notification.status == 0}">未读</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+<!--            3. 我的回复模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'replies'}">
+                <hr>
                 <div class="media" th:each="notification : ${pageDto.data}">
                     <div class="media-body">
                         <p class="media-heading" >
@@ -71,8 +91,9 @@
                     </div>
                 </div>
             </div>
-<!--            3. 我的粉丝模块-->
+<!--            4. 我的粉丝模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'fans'}">
+                <hr>
                 <div class="media" th:each="notification : ${pageDto.data}">
                     <div class="media-body">
                         <p class="media-heading" >
@@ -85,8 +106,9 @@
                     </div>
                 </div>
             </div>
-<!--            4. 我关注的人模块-->
+<!--            5. 我关注的人模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'idols'}">
+                <hr>
                 <div class="media" th:each="notification : ${pageDto.data}">
                     <div class="media-body">
                         <p class="media-heading" >
@@ -99,8 +121,9 @@
                     </div>
                 </div>
             </div>
-<!--            5. 我收藏的问题模块-->
+<!--            6. 我收藏的问题模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'collectQuestions'}">
+                <hr>
                 <div class="media" th:each="notification : ${pageDto.data}">
                     <div class="media-body">
                         <p class="media-heading" >
@@ -113,8 +136,9 @@
                     </div>
                 </div>
             </div>
-<!--            6. 我关注的话题模块-->
+<!--            7. 我关注的话题模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'followTags'}">
+                <hr>
                 <div class="media" th:each="notification : ${pageDto.data}">
                     <div class="media-body">
                         <p class="media-heading" >
@@ -127,8 +151,9 @@
                     </div>
                 </div>
             </div>
-<!--            7. 我关注的活动模块-->
+<!--            8. 我关注的活动模块-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'followActivities'}">
+                <hr>
                 <div class="media" th:each="notification : ${pageDto.data}">
                     <div class="media-body">
                         <p class="media-heading" >
@@ -178,6 +203,7 @@
                     最新回复
                     <span class="badge" th:text="${session.unreadCount}"></span>
                 </a>
+                <a href="/profile/mails" th:class="${section == 'mails'}?'active list-group-item active':'list-group-item'">我的邮箱</a>
                 <a href="/profile/questions" th:class="${section == 'questions'}?'active list-group-item active':'list-group-item'">我的问题</a>
                 <a href="/profile/fans" th:class="${section == 'fans'}?'active list-group-item active':'list-group-item'">我的粉丝</a>
                 <a href="/profile/idols" th:class="${section == 'idols'}?'active list-group-item active':'list-group-item'">我关注的人</a>

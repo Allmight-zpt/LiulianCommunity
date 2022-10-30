@@ -27,18 +27,18 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/hotTag">
+                            <span class="glyphicon glyphicon-tags"></span>话题
+                        </a>
+                    </li>
+                    <li>
                         <a href="/activity">
                             <span class="glyphicon glyphicon-globe"></span>活动
                         </a>
                     </li>
                     <li>
                         <a href="/hotTag">
-                            <span class="glyphicon glyphicon-tags"></span>话题
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/hotTag">
-                            <span class="glyphicon glyphicon-cloud-download"></span>下载
+                            <span class="glyphicon glyphicon-paperclip"></span>收藏
                         </a>
                     </li>
                     <li>
@@ -60,8 +60,7 @@
                     </li>
                     <li th:if="${session.user != null}">
                         <a href="/profile/replies">
-                            <span class="glyphicon glyphicon-bullhorn"></span>通知
-                            <span class="badge" th:text="${session.unreadCount}"></span>
+                            <span class="glyphicon glyphicon-bullhorn"></span>通知<span class="badge" th:text="${session.unreadCount}"></span>
                         </a>
                     </li>
                     <li class="dropdown" th:if="${session.user != null}">
@@ -75,10 +74,20 @@
                                     <span class="glyphicon glyphicon-home"></span>我的主页
                                 </a>
                             </li>
+                            <li>
+                                <a href="/profile/updateInfo">
+                                    <span class="glyphicon glyphicon-list-alt"></span>个人中心
+                                </a>
+                            </li>
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="/profile/replies">
-                                    <span class="glyphicon glyphicon-home"></span>个人中心
+                                <a href="/profile/mails">
+                                    <span class="glyphicon glyphicon-comment"></span>最新回复
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile/mails">
+                                    <span class="glyphicon glyphicon-envelope"></span>我的邮箱
                                 </a>
                             </li>
                             <li>
@@ -117,15 +126,15 @@
                                     <span class="glyphicon glyphicon-earphone"></span>在线聊天
                                 </a>
                             </li>
+                            <li>
+                                <a href="/">
+                                    <span class="glyphicon glyphicon-text-size"></span>写文章
+                                </a>
+                            </li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="/logout">
                                     <span class="glyphicon glyphicon-log-out"></span>推出登录
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/logout">
-                                    <span class="glyphicon glyphicon-cog"></span>设置
                                 </a>
                             </li>
                         </ul>

@@ -40,6 +40,11 @@ public class ProfileController {
             model.addAttribute("sectionName","最新回复");
             PageDto pageDto = notificationService.list(users.getId(),page,size);
             model.addAttribute("pageDto",pageDto);
+        } else if("mails".equals(action)){
+            model.addAttribute("section","mails");
+            model.addAttribute("sectionName","我的邮箱");
+            PageDto pageDto = notificationService.list(users.getId(),page,size);
+            model.addAttribute("pageDto",pageDto);
         } else if("fans".equals(action)){
             model.addAttribute("section","fans");
             model.addAttribute("sectionName","我的粉丝");
@@ -72,5 +77,10 @@ public class ProfileController {
     @GetMapping("/profile/myHome")
     public String myHome(){
         return "myHome";
+    }
+
+    @GetMapping("/profile/updateInfo")
+    public String updateInfo(){
+        return "updateInfo";
     }
 }
