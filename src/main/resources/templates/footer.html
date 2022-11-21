@@ -20,10 +20,44 @@
     toTop()">回到顶部</a>
     </div>
 
-    <!--        1. 播放背景音乐-->
-<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>-->
+<!--    3. 悬浮在线聊天窗口-->
+    <link rel='stylesheet' href='/font-awesome-4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="/css/floatingChatBox.css">
+    <div class="floating-chat">
+        <i class="fa fa-comments" aria-hidden="true"></i>
+        <div class="chat">
+            <div class="header">
+            <span class="title">
+                what's on your mind?
+            </span>
+                <button>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+
+            </div>
+            <ul class="messages">
+                <li class="other">asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas</li>
+                <li class="other">Are we dogs??? 🐶</li>
+                <li class="self">no... we're human</li>
+                <li class="other">are you sure???</li>
+                <li class="self">yes.... -___-</li>
+                <li class="other">if we're not dogs.... we might be monkeys 🐵</li>
+                <li class="self">i hate you</li>
+                <li class="other">don't be so negative! here's a banana 🍌</li>
+                <li class="self">......... -___-</li>
+            </ul>
+            <div class="chatFooter">
+                <div class="text-box" contenteditable="true" disabled="true"></div>
+                <button id="sendMessage">send</button>
+            </div>
+        </div>
+    </div>
+    <script  src="/js/floatingChatBox.js"></script>
+
+<!--            4. 播放背景音乐-->
+<!--    <link rel="stylesheet" href="/css/APlayer.min.css">-->
+<!--    <script src="/js/APlayer.min.js"></script>-->
+<!--    <script src="/js/Meting.min.js"></script>-->
 <!--    <meting-js-->
 <!--            server="netease"-->
 <!--            type="artist"-->

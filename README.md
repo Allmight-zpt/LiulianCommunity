@@ -46,6 +46,10 @@
 * [APlayer 音乐播放器](https://aplayer.js.org/#/)
 * [MetingJS 封装APlayer开箱即用快速实现背景音乐](https://github.com/metowolf/MetingJS)
 * [MetingJS 配合 APlayer使用实现背景音乐教程](https://www.cnblogs.com/fby698/p/12663089.html)
+* [Trec06c 垃圾邮件数据集](https://plg.uwaterloo.ca/cgi-bin/cgiwrap/gvcormac/foo06)
+* [Bert模型识别垃圾邮件教程](https://www.cnblogs.com/NosenLiu/p/14956415.html)
+* [SVM模型识别垃圾邮件教程](https://www.shuzhiduo.com/A/GBJrQYbEz0/)
+* [designGradients渐变颜色搭配网站](https://www.designgradients.com/)
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
