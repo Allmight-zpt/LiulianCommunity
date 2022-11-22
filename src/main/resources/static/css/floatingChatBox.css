@@ -146,6 +146,7 @@
     float: right;
     margin-right: 45px;
     color: #0AD5C1;
+    text-align: left;
 }
 .floating-chat .chat .messages li.other:before {
     right: -45px;
@@ -162,6 +163,7 @@
     float: left;
     margin-left: 45px;
     color: #0EC879;
+    text-align: left;
 }
 .floating-chat .chat .messages li.self:before {
     left: -45px;

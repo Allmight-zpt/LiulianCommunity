@@ -13,8 +13,9 @@ element.click(openElement);
 
 function openElement() {
     if(!isConnect){
-        var accountId = document.getElementsByClassName('floating-chat')[0].getAttribute('data-account-id');
-        connect(accountId);
+        var accountId = document.getElementsByClassName('floating-chat')[0].getAttribute('data-accountId');
+        var username = document.getElementsByClassName('floating-chat')[0].getAttribute('data-username');
+        connect(accountId,username);
         isConnect = true;
     }
     var messages = element.find('.messages');
@@ -30,9 +31,9 @@ function openElement() {
     messages.scrollTop(messages.prop("scrollHeight"));
 }
 
-function connect(accountId){
+function connect(accountId,username){
     if ('WebSocket' in window){
-        ws = new WebSocket("ws://localhost:8082/socketserver/"+accountId);
+        ws = new WebSocket("ws://localhost:8082/socketserver/"+accountId+"?username="+username);
     }
     else if ('MozWebSocket' in window){
         ws = new WebSocket("ws://localhost:8082/socketserver/"+accountId);
@@ -47,13 +48,16 @@ function connect(accountId){
             evt.data,
             '</li>'
         ].join(''));
+        messagesContainer.finish().animate({
+            scrollTop: messagesContainer.prop("scrollHeight")
+        }, messagesContainer.scrollHeight);
     };
 
     ws.onclose = function(evt) {
         var messagesContainer = $('.messages');
         messagesContainer.append([
             '<li class="other">',
-            '连接关闭',
+            '【系统消息】连接关闭',
             '</li>'
         ].join(''));
     };
