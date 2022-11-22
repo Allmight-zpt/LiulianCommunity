@@ -64,13 +64,6 @@ public class AuthorizeController {
             //userMapper.insert(user);
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",token));
-
-            /**
-             * 登录成功的同时建立一个webSocket连接  改为直接在前端建立webSocket连接，方便数据展示
-             * */
-            imProvider.createWebSocketConnect(String.valueOf(githubUser.getId()),request);
-            imProvider.sendMessageToClient("发送数据给服务器",request);
-            imProvider.getChatData(String.valueOf(githubUser.getId()));
             return "redirect:/";
         }else{
             //登录失败

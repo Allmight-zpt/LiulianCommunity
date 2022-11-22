@@ -13,8 +13,8 @@ element.click(openElement);
 
 function openElement() {
     if(!isConnect){
-        var userId = document.getElementsByClassName('floating-chat')[0].getAttribute("data-account-id");
-        //connect(userId);
+        var accountId = document.getElementsByClassName('floating-chat')[0].getAttribute('data-account-id');
+        connect(accountId);
         isConnect = true;
     }
     var messages = element.find('.messages');
@@ -30,17 +30,16 @@ function openElement() {
     messages.scrollTop(messages.prop("scrollHeight"));
 }
 
-function connect(userId){
+function connect(accountId){
     if ('WebSocket' in window){
-        ws = new WebSocket("ws://localhost:8082/socketserver/"+userId);
+        ws = new WebSocket("ws://localhost:8082/socketserver/"+accountId);
     }
     else if ('MozWebSocket' in window){
-        ws = new MozWebSocket("ws://localhost:8082/socketserver/"+userId);
+        ws = new WebSocket("ws://localhost:8082/socketserver/"+accountId);
     }
     else{
         alert("该浏览器不支持websocket");
     }
-
     ws.onmessage = function(evt) {
         var messagesContainer = $('.messages');
         messagesContainer.append([
@@ -54,20 +53,48 @@ function connect(userId){
         var messagesContainer = $('.messages');
         messagesContainer.append([
             '<li class="other">',
-            '发生错误，连接中断',
+            '连接关闭',
             '</li>'
         ].join(''));
     };
 
     ws.onopen = function(evt) {
+        //连接成功 先获取历史聊天记录
         var messagesContainer = $('.messages');
-        messagesContainer.append([
-            '<li class="other">',
-            '连接成功',
-            '</li>'
-        ].join(''));
+        $.ajax({
+            type:"GET",
+            url:"/chatData/" + accountId,
+            contentType:"application/json",
+            success:function (response){
+                if(response.code == 200){
+                    //历史记录不为空
+                    for (let i = 0; i <response.data.length; i++) {
+                        var meg = response.data[i].split(":");
+                        var source = meg[0];
+                        var content = meg[1];
+                        if(source === "server"){
+                            messagesContainer.append([
+                                '<li class="other">',
+                                content,
+                                '</li>'
+                            ].join(''));
+                        }else{
+                            messagesContainer.append([
+                                '<li class="self">',
+                                content,
+                                '</li>'
+                            ].join(''));
+                        }
+                    }
+                    //滚轮滑倒最底部
+                    messagesContainer.finish().animate({
+                        scrollTop: messagesContainer.prop("scrollHeight")
+                    }, messagesContainer.scrollHeight);
+                }
+            },
+            dataType:"json"
+        })
     };
-    myStorage.setItem('ws', ws);
 }
 
 function closeElement() {

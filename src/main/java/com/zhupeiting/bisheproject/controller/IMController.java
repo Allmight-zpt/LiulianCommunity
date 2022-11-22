@@ -1,5 +1,6 @@
 package com.zhupeiting.bisheproject.controller;
 
+import com.zhupeiting.bisheproject.dto.ChatDataDto;
 import com.zhupeiting.bisheproject.provider.IMProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class IMController {
 
     @ResponseBody
     @RequestMapping("/chatData/{accountId}")
-    public List<String>getChatData(@PathVariable("accountId") String accountId){
+    public ChatDataDto getChatData(@PathVariable("accountId") String accountId){
         return imProvider.getChatData(accountId);
     }
 }
