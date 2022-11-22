@@ -23,7 +23,7 @@
 <!--    3. 悬浮在线聊天窗口-->
     <link rel='stylesheet' href='/font-awesome-4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/css/floatingChatBox.css">
-    <div class="floating-chat">
+    <div class="floating-chat" th:if="${session.user != null}" th:data-account-id="${session.user.getAccountId()}">
         <i class="fa fa-comments" aria-hidden="true"></i>
         <div class="chat">
             <div class="header">
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <script  src="/js/floatingChatBox.js"></script>
+    <script src="/js/floatingChatBox.js"></script>
 
 <!--            4. 播放背景音乐-->
 <!--    <link rel="stylesheet" href="/css/APlayer.min.css">-->

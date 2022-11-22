@@ -3,8 +3,10 @@ import com.zhupeiting.bisheproject.dto.AccessTokenDto;
 import com.zhupeiting.bisheproject.dto.GithubUser;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.provider.GithubProvider;
+import com.zhupeiting.bisheproject.provider.IMProvider;
 import com.zhupeiting.bisheproject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.omg.CORBA.IMP_LIMIT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ import java.util.UUID;
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
+    @Autowired
+    private IMProvider imProvider;
     @Value("${github.client.id}")
     private String clientId;
     @Value("${github.client.secret}")
@@ -35,7 +39,8 @@ public class AuthorizeController {
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
-                           HttpServletResponse response){
+                           HttpServletResponse response,
+                           HttpServletRequest request){
         AccessTokenDto accessTokenDto = new AccessTokenDto();
         accessTokenDto.setClient_id(clientId);
         accessTokenDto.setClient_secret(clientSecret);
@@ -59,6 +64,13 @@ public class AuthorizeController {
             //userMapper.insert(user);
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",token));
+
+            /**
+             * 登录成功的同时建立一个webSocket连接  改为直接在前端建立webSocket连接，方便数据展示
+             * */
+            imProvider.createWebSocketConnect(String.valueOf(githubUser.getId()),request);
+            imProvider.sendMessageToClient("发送数据给服务器",request);
+            imProvider.getChatData(String.valueOf(githubUser.getId()));
             return "redirect:/";
         }else{
             //登录失败

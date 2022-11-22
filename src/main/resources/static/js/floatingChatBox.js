@@ -1,6 +1,6 @@
 var element = $('.floating-chat');
 var myStorage = localStorage;
-
+var isConnect = false;
 if (!myStorage.getItem('chatID')) {
     myStorage.setItem('chatID', createUUID());
 }
@@ -12,6 +12,11 @@ setTimeout(function() {
 element.click(openElement);
 
 function openElement() {
+    if(!isConnect){
+        var userId = document.getElementsByClassName('floating-chat')[0].getAttribute("data-account-id");
+        //connect(userId);
+        isConnect = true;
+    }
     var messages = element.find('.messages');
     var textInput = element.find('.text-box');
     element.find('>i').hide();
@@ -23,6 +28,46 @@ function openElement() {
     element.find('.header button').click(closeElement);
     element.find('#sendMessage').click(sendNewMessage);
     messages.scrollTop(messages.prop("scrollHeight"));
+}
+
+function connect(userId){
+    if ('WebSocket' in window){
+        ws = new WebSocket("ws://localhost:8082/socketserver/"+userId);
+    }
+    else if ('MozWebSocket' in window){
+        ws = new MozWebSocket("ws://localhost:8082/socketserver/"+userId);
+    }
+    else{
+        alert("该浏览器不支持websocket");
+    }
+
+    ws.onmessage = function(evt) {
+        var messagesContainer = $('.messages');
+        messagesContainer.append([
+            '<li class="other">',
+            evt.data,
+            '</li>'
+        ].join(''));
+    };
+
+    ws.onclose = function(evt) {
+        var messagesContainer = $('.messages');
+        messagesContainer.append([
+            '<li class="other">',
+            '发生错误，连接中断',
+            '</li>'
+        ].join(''));
+    };
+
+    ws.onopen = function(evt) {
+        var messagesContainer = $('.messages');
+        messagesContainer.append([
+            '<li class="other">',
+            '连接成功',
+            '</li>'
+        ].join(''));
+    };
+    myStorage.setItem('ws', ws);
 }
 
 function closeElement() {
@@ -56,11 +101,8 @@ function createUUID() {
 function sendNewMessage() {
     var userInput = $('.text-box');
     var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
-
     if (!newMessage) return;
-
     var messagesContainer = $('.messages');
-
     messagesContainer.append([
         '<li class="self">',
         newMessage,
@@ -75,6 +117,8 @@ function sendNewMessage() {
     messagesContainer.finish().animate({
         scrollTop: messagesContainer.prop("scrollHeight")
     }, 250);
+
+    ws.send(newMessage);
 }
 
 function onMetaAndEnter(event) {
