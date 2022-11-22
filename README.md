@@ -121,6 +121,23 @@
 - 一级评论是每次请求页面时在Controller中调用查询数据库的功能，然后把数据放入model中传递到页面，页面获取数据后展示。二级评论不能这么做，如果每次加载页面时都要先把所有二级评论加载好放入model中，那么页面请求会变慢，而且二级评论默认是关闭的，我们只需要在点击时显示就行，因此作为一个API，访问二级评论的API时给出父评论Id返回子评论数据，然后在前端展示即可。也就是之前回复功能API接口返回code和message的基础上再返回一个data数据就行。而且只有返回一个页面时才能加上model，返回JSON的API接口model和前端某一个界面是绑定不了的。
 - 二级评论提交页面刷新后仍然保持展开的功能：每次提交二级评论时，把当前二级评论父节点的id写入localStorage，每次页面加载到最后，运行script脚本读取id将其二级评论展开即可。
 
+## 文件管理系统（FileSystem）
+- markdown中的图片数据不存储在本项目中，而是存储在easy-fs即另一个文件管理系统中。使用FSProvider实现对文件系统上传接口的访问，前端调用FileController，FileController注入FSProvider实现上传接口访问，将图片数据上传到文件系统中。
+
+## 即时通讯系统（IMSystem）
+- 即时通讯功能不在本项目中实现，而是借助IMSystem项目，这是一个即时通讯服务器，可以进行消息的转发和聊天信息的存储。
+- 本项目实现前端的通讯界面，使用JS实现webSocket对象的创建，可以直接与IMSystem进行全双工通讯，IMSystem进行消息的转发，后续考虑IMSystem访问AISystem实现智能回复。 
+### 为什么要使用webSocket？
+- webSocket可以实现全双工通讯，如果使用http协议，请求只能由客户端发起，服务端响应，客户端必须使用轮询的方式监听服务端是否发来消息，这十分浪费资源。而webSocket可以实现全双工通讯，双方都可以主动发起请求。
+### JAVA创建webSocket客户端还是JS创建webSocket客户端？
+- 使用JS存在的问题：每次切换页面都会导致webSocket对象关闭，JAVA实现的话我们可以手动生成和销毁webSocket对象与网页切换无关。 使用JAVA存在的问题：JAVA接收到服务器传来的消息后要传递给前端，这时需要使用rabbitmq等消息队列组件或者前端轮询，这就与使用webSocket的初衷相违背了。
+- 本项目使用JS创建webSocket，为了解决切换界面webSocket被销毁的问题，我们在IMSystem中对历史聊天记录进行备份，webSocket虽然销毁但聊天记录会一直保存，每次前端创建新webSocket对象时，查询是否有历史记录如果有则返回前端显示，这样看起来就是一直保持连接了。
+- 前端在请求历史聊天记录的时候直接访问IMSystem的接口存在跨域的问题，因此，我们让前端访问本项目的controller，controller注入IMProvider，使用OKHttp实现历史记录的请求，这样可以解决跨域问题。
+
+## 第三方系统的嵌入模式
+![第三方系统的嵌入](./assets/Embed_Other_System.png)
+
+
 # 脚本
 ```bash
 mvn flyway:migrate
