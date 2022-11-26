@@ -103,7 +103,7 @@ CodeMirror.defineMode("velocity", function() {
             // get the whole word
             stream.eatWhile(/[\w\$_{}@]/);
             var word = stream.current();
-            // is it one of the listed keywords?
+            // is it one of the listed keywords.txt?
             if (keywords && keywords.propertyIsEnumerable(word))
                 return "keyword";
             // is it one of the listed functions?

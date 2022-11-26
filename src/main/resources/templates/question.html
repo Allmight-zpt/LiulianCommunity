@@ -80,16 +80,9 @@
                                 <span th:text="${comment.users.name}"></span>
                             </h5>
 <!--                            <div th:text="${comment.content}"></div>-->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment-view" >
+                            <div class="comment-view col-lg-12 col-md-12 col-sm-12 col-xs-12" th:id="${'comment-view'+comment.id}" >
                                 <textarea style="display:none;" th:text="${comment.content}"></textarea>
                             </div>
-                            <script type="text/javascript">
-                                $(function() {
-                                    var testView = editormd.markdownToHTML("comment-view", {
-                                    });
-                                });
-                            </script>
-
                             <div class="menu">
                                 <span class="icon-text"
                                       th:data-id="${comment.id}"
@@ -117,6 +110,16 @@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    $(function() {
+                        const length = document.getElementsByClassName('comment-view').length;
+                        for (let i = 0; i <length; i++) {
+                            const id = document.getElementsByClassName('comment-view')[i].getAttribute('id');
+                            var testView = editormd.markdownToHTML(id, {
+                            });
+                        }
+                    });
+                </script>
             </div>
 <!--            回复输入框-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

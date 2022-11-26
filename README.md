@@ -51,6 +51,7 @@
 * [Bert模型识别垃圾邮件教程](https://www.cnblogs.com/NosenLiu/p/14956415.html)
 * [SVM模型识别垃圾邮件教程](https://www.shuzhiduo.com/A/GBJrQYbEz0/)
 * [designGradients渐变颜色搭配网站](https://www.designgradients.com/)
+* [DFA算法实现敏感词过滤]()
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
@@ -134,9 +135,17 @@
 - 本项目使用JS创建webSocket，为了解决切换界面webSocket被销毁的问题，我们在IMSystem中对历史聊天记录进行备份，webSocket虽然销毁但聊天记录会一直保存，每次前端创建新webSocket对象时，查询是否有历史记录如果有则返回前端显示，这样看起来就是一直保持连接了。
 - 前端在请求历史聊天记录的时候直接访问IMSystem的接口存在跨域的问题，因此，我们让前端访问本项目的controller，controller注入IMProvider，使用OKHttp实现历史记录的请求，这样可以解决跨域问题。
 
+## 人工智能系统（AISystem）
+- 待补充
+
+## 内容管理系统（CMSystem）
+- 待补充
+
 ## 第三方系统的嵌入模式
 ![第三方系统的嵌入](./assets/Embed_Other_System.png)
 
+## DFA算法实现敏感词过滤
+- 待补充
 
 # 脚本
 ```bash

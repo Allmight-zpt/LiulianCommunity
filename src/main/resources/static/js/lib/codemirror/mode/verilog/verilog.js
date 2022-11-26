@@ -250,7 +250,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     if (text == contextClosing) {
       return true;
     } else {
-      // contextClosing may be mulitple keywords separated by ;
+      // contextClosing may be mulitple keywords.txt separated by ;
       var closingKeywords = contextClosing.split(";");
       for (var i in closingKeywords) {
         if (text == closingKeywords[i]) {
@@ -263,7 +263,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
 
   function buildElectricInputRegEx() {
     // Reindentation should occur on any bracket char: {}()[]
-    // or on a match of any of the block closing keywords, at
+    // or on a match of any of the block closing keywords.txt, at
     // the end of a line
     var allClosings = [];
     for (var i in openClose) {

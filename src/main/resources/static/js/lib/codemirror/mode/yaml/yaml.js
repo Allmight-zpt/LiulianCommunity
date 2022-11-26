@@ -80,7 +80,7 @@ CodeMirror.defineMode("yaml", function() {
         /* numbers */
         if (state.inlinePairs == 0 && stream.match(/^\s*-?[0-9\.\,]+\s?$/)) { return 'number'; }
         if (state.inlinePairs > 0 && stream.match(/^\s*-?[0-9\.\,]+\s?(?=(,|}))/)) { return 'number'; }
-        /* keywords */
+        /* keywords.txt */
         if (stream.match(keywordRegex)) { return 'keyword'; }
       }
 

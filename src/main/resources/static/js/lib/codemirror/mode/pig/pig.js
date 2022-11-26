@@ -107,10 +107,10 @@ CodeMirror.defineMode("pig", function(_config, parserConfig) {
     else {
       // get the while word
       stream.eatWhile(/[\w\$_]/);
-      // is it one of the listed keywords?
+      // is it one of the listed keywords.txt?
       if (keywords && keywords.propertyIsEnumerable(stream.current().toUpperCase())) {
         if (stream.eat(")") || stream.eat(".")) {
-          //keywords can be used as variables like flatten(group), group.$0 etc..
+          //keywords.txt can be used as variables like flatten(group), group.$0 etc..
         }
         else {
           return ("keyword", "keyword");

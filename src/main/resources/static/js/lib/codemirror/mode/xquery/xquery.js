@@ -13,11 +13,11 @@
 
 CodeMirror.defineMode("xquery", function() {
 
-  // The keywords object is set to the result of this self executing
-  // function. Each keyword is a property of the keywords object whose
+  // The keywords.txt object is set to the result of this self executing
+  // function. Each keyword is a property of the keywords.txt object whose
   // value is {type: atype, style: astyle}
   var keywords = function(){
-    // conveinence functions used to build keywords object
+    // conveinence functions used to build keywords.txt object
     function kw(type) {return {type: type, style: "keyword"};}
     var A = kw("keyword a")
       , B = kw("keyword b")
@@ -37,7 +37,7 @@ CodeMirror.defineMode("xquery", function() {
       'null': atom, 'fn:false()': atom, 'fn:true()': atom
     };
 
-    // a list of 'basic' keywords. For each add a property to kwObj with the value of
+    // a list of 'basic' keywords.txt. For each add a property to kwObj with the value of
     // {type: basic[i], style: "keyword"} e.g. 'after' --> {type: "after", style: "keyword"}
     var basic = ['after','ancestor','ancestor-or-self','and','as','ascending','assert','attribute','before',
     'by','case','cast','child','comment','declare','default','define','descendant','descendant-or-self',

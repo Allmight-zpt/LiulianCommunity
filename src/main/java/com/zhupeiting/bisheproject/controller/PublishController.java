@@ -6,6 +6,7 @@ import com.zhupeiting.bisheproject.dto.TagDto;
 import com.zhupeiting.bisheproject.model.Question;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.service.QuestionService;
+import com.zhupeiting.bisheproject.util.SensitiveWordFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class PublishController {
     private String authorizeUriWithParams;
     @Autowired
     QuestionService questionService;
+    @Autowired
+    SensitiveWordFilter sensitiveWordFilter;
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Long id,
                        Model model){
@@ -80,6 +83,8 @@ public class PublishController {
             model.addAttribute("error","存在非法标签：" + invalid);
             return "publish";
         }
+        description = sensitiveWordFilter.replaceSensitiveWord(description,SensitiveWordFilter.maxMatchType, sensitiveWordFilter.getReplaceChars("×",1));
+        title = sensitiveWordFilter.replaceSensitiveWord(title,SensitiveWordFilter.maxMatchType, sensitiveWordFilter.getReplaceChars("×",1));
         Question question = new Question();
         question.setTitle(title);
         question.setDescription(description);

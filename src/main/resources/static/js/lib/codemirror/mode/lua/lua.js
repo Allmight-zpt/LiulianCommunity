@@ -3,7 +3,7 @@
 
 // LUA mode. Ported to CodeMirror 2 from Franciszek Wawrzak's
 // CodeMirror 1 mode.
-// highlights keywords, strings, comments (no leveling supported! ("[==[")), tokens, basic indenting
+// highlights keywords.txt, strings, comments (no leveling supported! ("[==[")), tokens, basic indenting
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

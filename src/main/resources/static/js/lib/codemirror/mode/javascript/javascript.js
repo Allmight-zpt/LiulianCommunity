@@ -40,7 +40,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C
     };
 
-    // Extend the 'normal' keywords with the TypeScript language extensions
+    // Extend the 'normal' keywords.txt with the TypeScript language extensions
     if (isTS) {
       var type = {type: "variable", style: "variable-3"};
       var tsKeywords = {

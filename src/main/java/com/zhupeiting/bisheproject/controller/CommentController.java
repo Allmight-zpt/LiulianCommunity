@@ -9,6 +9,7 @@ import com.zhupeiting.bisheproject.exception.CustomizeErrorCode;
 import com.zhupeiting.bisheproject.model.Comment;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.service.CommentService;
+import com.zhupeiting.bisheproject.util.SensitiveWordFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,8 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
-
+    @Autowired
+    private SensitiveWordFilter sensitiveWordFilter;
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
     public Object post(@RequestBody CommentCreateDto commentDto,
@@ -33,6 +35,7 @@ public class CommentController {
         if(commentDto == null || commentDto.getContent() == null || "".equals(commentDto.getContent())){
             return ResultDto.errorOf(CustomizeErrorCode.COMMENT_IS_EMPTY);
         }
+        commentDto.setContent(sensitiveWordFilter.replaceSensitiveWord(commentDto.getContent(),SensitiveWordFilter.maxMatchType,sensitiveWordFilter.getReplaceChars("×",1)));
         Comment comment = new Comment();
         comment.setParentId(commentDto.getParentId());
         comment.setContent(commentDto.getContent());
