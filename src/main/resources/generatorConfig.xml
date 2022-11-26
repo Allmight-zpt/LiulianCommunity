@@ -6,12 +6,18 @@
 <generatorConfiguration>
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
-        <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:~/community"
+<!--        <jdbcConnection driverClass="org.h2.Driver"-->
+<!--                        connectionURL="jdbc:h2:~/community"-->
+<!--                        userId="root"-->
+<!--                        password="123456">-->
+<!--        </jdbcConnection>-->
+<!--        5. 迁移到mysql-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/community"
                         userId="root"
-                        password="123456">
+                        password="">
+            <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
-
         <javaTypeResolver >
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
@@ -29,10 +35,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="MY_USER" domainObjectName="Users" ></table>
-        <table tableName="QUESTION" domainObjectName="Question" ></table>
-        <table tableName="COMMENT" domainObjectName="Comment" ></table>
-        <table tableName="NOTIFICATION" domainObjectName="Notification" ></table>
-        <table tableName="AD" domainObjectName="Ad" ></table>
+<!--        <table tableName="MY_USER" domainObjectName="Users" ></table>-->
+<!--        <table tableName="QUESTION" domainObjectName="Question" ></table>-->
+<!--        <table tableName="COMMENT" domainObjectName="Comment" ></table>-->
+<!--        <table tableName="NOTIFICATION" domainObjectName="Notification" ></table>-->
+<!--        <table tableName="AD" domainObjectName="Ad" ></table>-->
+        <table tableName="table_name" domainObjectName="tableName"></table>
     </context>
 </generatorConfiguration>

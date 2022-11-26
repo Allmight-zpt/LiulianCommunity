@@ -51,7 +51,7 @@
 * [Bert模型识别垃圾邮件教程](https://www.cnblogs.com/NosenLiu/p/14956415.html)
 * [SVM模型识别垃圾邮件教程](https://www.shuzhiduo.com/A/GBJrQYbEz0/)
 * [designGradients渐变颜色搭配网站](https://www.designgradients.com/)
-* [DFA算法实现敏感词过滤]()
+* [DFA算法实现敏感词过滤](https://blog.csdn.net/henshuia/article/details/111498753)
 
 # 工具
 * [git 远程管理github仓库](https://git-scm.com/)
@@ -138,9 +138,6 @@
 ## 人工智能系统（AISystem）
 - 待补充
 
-## 内容管理系统（CMSystem）
-- 待补充
-
 ## 第三方系统的嵌入模式
 ![第三方系统的嵌入](./assets/Embed_Other_System.png)
 
@@ -149,6 +146,7 @@
 
 # 脚本
 ```bash
+# 将数据库迁移到mysql后不再使用
 mvn flyway:migrate
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```

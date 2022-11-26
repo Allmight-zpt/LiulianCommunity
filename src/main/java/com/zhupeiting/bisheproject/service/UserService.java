@@ -3,7 +3,6 @@ package com.zhupeiting.bisheproject.service;
 import com.zhupeiting.bisheproject.mapper.UsersMapper;
 import com.zhupeiting.bisheproject.model.Users;
 import com.zhupeiting.bisheproject.model.UsersExample;
-import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
