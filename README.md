@@ -136,7 +136,9 @@
 - 前端在请求历史聊天记录的时候直接访问IMSystem的接口存在跨域的问题，因此，我们让前端访问本项目的controller，controller注入IMProvider，使用OKHttp实现历史记录的请求，这样可以解决跨域问题。
 
 ## 人工智能系统（AISystem）
-- 待补充
+- 使用GPT模型，在三种数据集上进行训练，得到三个机器人客服。
+- 使用Flask部署，提供机器人聊天接口。
+- IMSystem接收到用户的消息后，调用AISystem的机器人聊天接口，得到机器人的回复，将回复消息发送到社区。
 
 ## 第三方系统的嵌入模式
 ![第三方系统的嵌入](./assets/Embed_Other_System.png)
