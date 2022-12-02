@@ -9,4 +9,10 @@ public class ActivityController {
     public String activity(){
         return "activity";
     }
+
+    @GetMapping("/face")
+    public String face(){
+        return "face";
+    }
+
 }
