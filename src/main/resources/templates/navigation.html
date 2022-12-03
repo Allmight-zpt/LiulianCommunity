@@ -262,6 +262,46 @@
         const idx = Math.round(Math.random()*100);
         document.getElementById('oneWord').innerHTML = allWords[idx];
     </script>
+
+<!--    活动一下-->
+    <script src="/js/restTime.js"></script>
+    <script src="/js/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="/js/control_utils.js" crossorigin="anonymous"></script>
+    <script src="/js/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="/js/face_mesh.js" crossorigin="anonymous"></script>
+
+    <div class="modal fade" id="myEnd" tabindex="-1" role="dialog" aria-labelledby="playModalLabel" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:location.reload();"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mailModalLabel">活动一下吧</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <video class="input_video"></video>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <canvas class="output_canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+<!--                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:location.reload();">关闭</button>-->
+<!--                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="javascript:location.reload();">发送</button>-->
+                    <div class="face-mesh-footer">
+                        <span>
+                            久坐伤身！连续盯着电脑屏幕太久对脖子不好噢~快跟着屏幕得提示活动一下脖子吧~<br>
+                            活动结束后去户外走走，放松一下吧~
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

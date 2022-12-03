@@ -10,9 +10,5 @@ public class ActivityController {
         return "activity";
     }
 
-    @GetMapping("/face")
-    public String face(){
-        return "face";
-    }
 
 }

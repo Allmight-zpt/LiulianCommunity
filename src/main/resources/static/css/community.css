@@ -438,14 +438,21 @@ textarea{
     resize: none;
 }
 
-
-
-
-
-
-
 .my-hr{
     background: #99cfff70;
     padding-left: 0;
     padding-right: 0;
+}
+
+.input_video{
+    width: 100%;
+}
+
+.output_canvas{
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+
+.face-mesh-footer{
+    text-align: center;
 }
